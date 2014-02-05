@@ -13,15 +13,18 @@ public class MainView extends JPanel {
 	
 	// The components of our view
 	JLabel label = new JLabel();
-	JButton plusButton = new JButton();
-	JButton minusButton = new JButton();
+	JButton plusButton = new JButton("World");
+	JButton minusButton = new JButton("Wayne's");
 	
 	public MainView(){
 
-		label.setText("Hello world");
+		label.setText("Hello");
 		
 		// Add label to the view
 		this.add(label);
+		
+		this.add(plusButton);
+		this.add(minusButton);
 		
 		
 		// Setup the rest of the view layout
