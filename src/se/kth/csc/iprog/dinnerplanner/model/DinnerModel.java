@@ -110,7 +110,6 @@ public class DinnerModel implements IDinnerModel {
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
 	public Dish getSelectedDish(int type) {
-		Set<Dish> result = new HashSet<Dish>();
 		for(Dish d : dishes){
 			if(d.getType() == type){
 				return d;
