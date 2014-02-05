@@ -18,7 +18,7 @@ public class MainContentView extends JPanel {
 	
 	public MainContentView(){
 
-		label.setText("Hello");
+		label.setText("MainContent");
 		
 		// Add label to the view
 		this.add(label);

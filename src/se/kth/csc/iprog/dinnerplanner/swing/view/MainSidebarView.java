@@ -18,7 +18,7 @@ public class MainSidebarView extends JPanel {
 	
 	public MainSidebarView(){
 
-		label.setText("Hello");
+		label.setText("SidebarContent");
 		
 		// Add label to the view
 		this.add(label);
