@@ -23,7 +23,7 @@ public class DinnerPlanner extends JFrame {
 	public void setModel(DinnerModel model) {
 		this.model = model;
 	}
-
+	
 	public static void main(String[] args) {
 		//Initiating the main JFrame
 		DinnerPlanner dinnerPlanner = new DinnerPlanner();
