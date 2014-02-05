@@ -5,8 +5,11 @@ import java.util.Set;
 
 public class DinnerModel implements IDinnerModel {
 	
-
 	Set<Dish> dishes = new HashSet<Dish>();
+	int numberOfGuests;
+	
+	Set<Dish> selectedDished = new HashSet<Dish>();
+	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
 	
 	/**
 	 * TODO: For Lab2 you need to implement the IDinnerModel interface.
@@ -96,39 +99,47 @@ public class DinnerModel implements IDinnerModel {
 	}
 	
 	public int getNumberOfGuests() {
-		return 4;
+		return this.numberOfGuests;
 	}
 	
 	public void setNumberOfGuests(int numberOfGuests) {
-		
+		this.numberOfGuests = numberOfGuests;
 	}
 	
 	/**
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
 	public Dish getSelectedDish(int type) {
-		
+		return this.selectedDished.get( type );
 	}
 	
 	/**
 	 * Returns all the dishes on the menu.
 	 */
 	public Set<Dish> getFullMenu() {
-
+		return this.selectedDished;
 	}
 	
 	/**
 	 * Returns all ingredients for all the dishes on the menu.
 	 */
 	public Set<Ingredient> getAllIngredients() {
-		
+		return this.allIngredients;
 	}
 	
 	/**
 	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	 */
 	public float getTotalMenuPrice() {
-		return -1.0f;
+		float totalPrice = -1.0f;
+		
+		for(Dish d : this.getFullMenu() ){		
+			for(Ingredient i : d.getIngredients() ) {
+				totalPrice += i.getPrice();
+			}
+		}
+		
+		return totalPrice;
 	}
 	
 }
