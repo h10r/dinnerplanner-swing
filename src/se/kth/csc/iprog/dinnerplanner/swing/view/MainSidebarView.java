@@ -18,6 +18,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Dimension;
 
 public class MainSidebarView extends JPanel {
 	
@@ -25,7 +26,7 @@ public class MainSidebarView extends JPanel {
 	
 	// The components of our view
 	
-	public MainSidebarView(){
+	public MainSidebarView( DinnerModel modelInstance ){
 		
 		String[] numberOfPeople = { "1","2","3","4","5","6","7","8","9","10","11","12" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -78,6 +79,7 @@ public class MainSidebarView extends JPanel {
 		add(lblDinerMenuLabel, gbc_lblDinerMenuLabel);
 		
 		JLabel lblDishDragNDrop = new JLabel("Drag your dish to the menu");
+		lblDishDragNDrop.setPreferredSize(new Dimension(173, 400));
 		GridBagConstraints gbc_lblDishDragNDrop = new GridBagConstraints();
 		gbc_lblDishDragNDrop.gridheight = 4;
 		gbc_lblDishDragNDrop.gridwidth = 2;

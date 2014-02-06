@@ -5,12 +5,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
+
 import javax.swing.JTabbedPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JTextField;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.Set;
+import javax.swing.JScrollPane;
 
 
 public class MainContentView extends JPanel {
@@ -25,17 +32,21 @@ public class MainContentView extends JPanel {
 	private final JPanel mainContentPanel = new JPanel();
 	private final JPanel starterPanel = new JPanel();
 	private final JTextField txtStarterSearchBar = new JTextField();
-	private final JPanel starterContentPanel = new JPanel();
 	
-	public MainContentView(){
+	private DinnerModel modelInstance;
+	private final JScrollPane starterScrollPane = new JScrollPane();
+	
+	public MainContentView( DinnerModel modelInstance ){
+		this.modelInstance = modelInstance;
+		
 		setLayout(new BorderLayout(0, 0));
 		
 		add(tabbedPane, BorderLayout.WEST);
 		GridBagLayout gbl_starterPanel = new GridBagLayout();
 		gbl_starterPanel.columnWidths = new int[]{147, 134, 0};
-		gbl_starterPanel.rowHeights = new int[]{28, 0, 0};
+		gbl_starterPanel.rowHeights = new int[]{28, 0, 0, 0};
 		gbl_starterPanel.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gbl_starterPanel.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_starterPanel.rowWeights = new double[]{0.0, 1.0, 1.0, Double.MIN_VALUE};
 		tabbedPane.addTab("Starter", null, starterPanel, null);
 		starterPanel.setLayout(gbl_starterPanel);
 		
@@ -48,14 +59,7 @@ public class MainContentView extends JPanel {
 		txtStarterSearchBar.setText("Search dish...");
 		txtStarterSearchBar.setColumns(10);
 		starterPanel.add(txtStarterSearchBar, gbc_txtStarterSearchBar);
-		
-		GridBagConstraints gbc_starterContentPanel = new GridBagConstraints();
-		gbc_starterContentPanel.gridwidth = 2;
-		gbc_starterContentPanel.fill = GridBagConstraints.BOTH;
-		gbc_starterContentPanel.insets = new Insets(0, 0, 0, 5);
-		gbc_starterContentPanel.gridx = 0;
-		gbc_starterContentPanel.gridy = 1;
-		starterPanel.add(starterContentPanel, gbc_starterContentPanel);
+		tabbedPane.addTab("New tab", null, starterScrollPane, null);
 		
 		tabbedPane.addTab("Main", null, mainPanel, null);
 		GridBagLayout gbl_mainPanel = new GridBagLayout();
@@ -111,6 +115,22 @@ public class MainContentView extends JPanel {
 		
 		
 		// Setup the rest of the view layout
+		
+		this.setupInlinePanels();
+		
+		// starterContentPanel.
 	}
+	
+	public void setupInlinePanels() {
+		Set<Dish> dishes = this.modelInstance.getDishes();
+		
+		for(Dish d : dishes){
+			JLabel newDish = new JLabel();
+			
+			
+		}
+		
+	}
+	
 	
 }

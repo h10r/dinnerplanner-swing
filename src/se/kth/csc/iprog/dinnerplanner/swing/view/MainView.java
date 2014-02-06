@@ -14,15 +14,10 @@ public class MainView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	
-	MainContentView contentView = new MainContentView();
-	MainSidebarView sidebarView = new MainSidebarView();
-	
-	private DinnerModel modelInstance = new DinnerModel();
-	
-	public MainView(DinnerModel model){
+	public MainView(DinnerModel modelInstance){
 		
-		modelInstance = model;
-		Dish selectedDish = modelInstance.getSelectedDish(1);
+		MainContentView contentView = new MainContentView( modelInstance );
+		MainSidebarView sidebarView = new MainSidebarView( modelInstance );
 		
 		this.setLayout(new BorderLayout() );
 				

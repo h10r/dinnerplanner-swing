@@ -43,18 +43,10 @@ public class DishView extends JPanel {
 	private final JTextPane txtInfoPane = new JTextPane();
 	private final JScrollPane ingredientsViewPanel = new JScrollPane();
 	private final JTable table = new JTable();
-
 	
-<<<<<<< HEAD
-	public DishView(DinnerModel model){
-		
-		modelInstance = model;
-		Dish selectedDish = modelInstance.getSelectedDish(1);
-=======
 	public DishView(DinnerModel modelInstance){
 		int dishNumber = modelInstance.getClickedDish();
 		Dish selectedDish = modelInstance.getSelectedDish(dishNumber);
->>>>>>> master
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
