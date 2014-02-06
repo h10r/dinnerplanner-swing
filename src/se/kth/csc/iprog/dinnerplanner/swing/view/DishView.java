@@ -36,7 +36,6 @@ public class DishView extends JPanel {
 	private final JTextPane txtInfoPane = new JTextPane();
 	private final JScrollPane ingredientsViewPanel = new JScrollPane();
 	private final JTable table = new JTable();
-
 	
 	public DishView(DinnerModel modelInstance){
 		int dishNumber = modelInstance.getClickedDish();
