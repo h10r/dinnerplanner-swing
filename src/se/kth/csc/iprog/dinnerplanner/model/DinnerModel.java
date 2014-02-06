@@ -41,6 +41,7 @@ public class DinnerModel implements IDinnerModel {
 		dish1.addIngredient(dish1ing5);
 		dishes.add(dish1);
 		
+		
 		Dish dish2 = new Dish("Meat balls",Dish.MAIN,"meatballs.jpg","Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.");
 		Ingredient dish2ing1 = new Ingredient("extra lean ground beef",115,"g",20);
 		Ingredient dish2ing2 = new Ingredient("sea salt",0.7,"g",3);
@@ -79,8 +80,7 @@ public class DinnerModel implements IDinnerModel {
 		dish3.addIngredient(dish3ing4);
 		dish3.addIngredient(dish3ing5);
 		dishes.add(dish3);
-		
-		
+
 		Dish dish4 = new Dish("Ice Cream",Dish.DESERT,"icecream.jpg","Make sure that you have plenty of room spare in the freezer. First, separate the eggs, placing the yolks in a large bowl. (You will not need the whites for this recipe. You can use them to make meringues.)    Add the sugar to the egg yolks and whisk until pale and thick.    Add the cornflour (if using) and whisk well to incorporate into the egg yolks.    Put the cream and milk into a medium saucepan.    Cut the vanilla pod open lengthways and scrape out the seeds with the back of a knife, then add to the cream and milk.    Heat the cream and milk until just below boiling. Slowly pour the hot cream and milk onto the eggs and sugar, whisking as you go.    Sieve the custard into a clean pan, and set it over a very low heat. Stir the custard constantly with a wooden spoon, paying special attention to the corners of the pan, until it is steaming and has thickened slightly. The custard is ready when you can draw a clear line through it on the back of the wooden spoon. This can take up to 10 minutes.    Tip the custard into a large, shallow, freezer-proof container, and allow to cool to room temperature (you can speed this up by sitting the tub of custard in a large bowl of iced water).    Once at room temperature, place a lid on the custard and chill in the fridge overnight.    Once chilled, transfer the custard to the freezer and take it out every hour, for three hours, to whisk it with an electric handheld whisk. This will disperse the ice crystals and keep it smooth.    Then leave the ice-cream in the freezer for a final freeze, until it is solid.    Remove the ice cream from the freezer 10 minutes before serving, so that it’s easy to scoop.");
 		Ingredient dish4ing1 = new Ingredient("egg yolks",4,"",2);
 		Ingredient dish4ing2 = new Ingredient("vanilla pod",1,"",6);
@@ -94,6 +94,8 @@ public class DinnerModel implements IDinnerModel {
 		dish4.addIngredient(dish4ing5);
 		dishes.add(dish4);
 		
+		selectedDished.add(dish1); // !!! just added that for testing
+		selectedDished.add(dish2); // !!! just added that for testing
 	}
 	
 	/**
@@ -197,6 +199,33 @@ public class DinnerModel implements IDinnerModel {
 					itrCount++;
 				}
 				tableModel = new DefaultTableModel(tableData,colTitles);
+		return tableModel;
+	}
+	
+	// method that returns an a tableModel object with all ingredients needed for the dinner 
+	public DefaultTableModel getIngredientsTableModel(){
+		
+		DefaultTableModel tableModel = null;
+		
+		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
+		Object[][] ingredientsData = new Object[100][3];
+		
+		// iterate through whole menu
+		int i = 0;
+		for(Dish dish : this.getFullMenu()){		
+			for(Ingredient ingredient : dish.getIngredients() ) {
+				//System.out.println(ingredient.getName());
+				ingredientsData[i][0] = ingredient.getName();
+				ingredientsData[i][1] = ingredient.getQuantity() + " " + ingredient.getUnit();
+				ingredientsData[i][2] = "$" + ingredient.getPrice();
+				//allIngredients.add(ingredient);
+				i++;
+			}
+		}
+		
+		//System.out.println(ingredientsData);
+				
+		tableModel = new DefaultTableModel(ingredientsData, colTitles);
 		return tableModel;
 	}
 	
