@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
+import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
 
 import java.awt.Font;
 
@@ -48,16 +50,58 @@ public class DishView extends JPanel {
 	public DishView(DinnerModel model){
 		
 		modelInstance = model;
-		Dish selectedDish = modelInstance.getSelectedDish(1);
+		Dish selectedDish = modelInstance.getSelectedDish(2);
+		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
-		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice());
+		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice()+" for "+modelInstance.getNumberOfGuests()+" guests.");
 		modelInstance.getTotalMenuPrice();
+		
+		//set up empty table data.
+		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
+		Object[][] tableData = new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			};
+		
+		Iterator<Ingredient> ingIterator = selectedDish.getIngredients().iterator();
+		int itrCount = 0;
+		while(ingIterator.hasNext()){
+			Ingredient ingredient = ingIterator.next();
+			tableData[itrCount][0] = ingredient.getName();
+			tableData[itrCount][1] = ingredient.getQuantity()+" "+ingredient.getUnit();
+			tableData[itrCount][2] = "$"+ingredient.getPrice();
+			itrCount++;
+		}
+
+		//try to open image file for dish
 		try {
 		    dishImage = ImageIO.read(new File("images/"+selectedDish.getImage()));
 		    imageLabel = new JLabel(new ImageIcon(dishImage));
 		    imageDish = imageLabel;
-		    System.out.println(dishImage.getWidth());
 		} catch (IOException e) {
 			System.out.println("error image file not found");
 		}
@@ -83,44 +127,11 @@ public class DishView extends JPanel {
 		txtInfoPane.setMinimumSize(new Dimension(500, 300));
 		txtInfoPane.setContentType("text/html");
 		txtInfoPane.setEditable(false);
-		txtInfoPane.setText("<center><h3>Dish Preparation</h3><p>Description of Dish and its preparation</p></center>");
+		txtInfoPane.setText("<center><h3>Dish Preparation</h3><p>"+selectedDish.getDescription()+"</p></center>");
 		
 		add(txtInfoPane, BorderLayout.WEST);
-		
 		add(scrollPane, BorderLayout.CENTER);
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"Ingredients", "Quantity", "Cost"
-			}
-		));
-		
+		table.setModel(new DefaultTableModel(tableData,colTitles));
 		scrollPane.setViewportView(table);	
 	}
 
