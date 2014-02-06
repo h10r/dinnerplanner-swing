@@ -47,7 +47,11 @@ public class MainContentView extends JPanel {
 	private final JTextField txtSearchBar = new JTextField();
 	private final JPanel starterContentPanel = new JPanel();
 	
-	public MainContentView( DinnerModel modelInstance ) {
+	private MainView controllerInstance;
+	
+	public MainContentView( DinnerModel modelInstance, MainView controllerInstance ) {
+		
+		this.controllerInstance = controllerInstance;
 		this.modelInstance = modelInstance;
 		
 		setLayout(new BorderLayout(0, 0));
