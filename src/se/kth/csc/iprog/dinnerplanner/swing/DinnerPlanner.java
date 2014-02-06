@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.swing;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import java.util.ArrayList;
 import java.util.Observer;
@@ -44,7 +45,11 @@ public class DinnerPlanner extends JFrame {
        }
        */
     }
-	
+    
+    public void renderView( JPanel newView ) {
+    	this.getContentPane().add( newView );
+    }
+    
 	public static void main(String[] args) {
 		//Initiating the main JFrame
 		DinnerPlanner dinnerPlanner = new DinnerPlanner();
@@ -58,7 +63,11 @@ public class DinnerPlanner extends JFrame {
 		//DishView dishView = new DishView(modelInstance);
 		
 		//Adding the view to the main JFrame
-		dinnerPlanner.getContentPane().add(mainView);
+		//dinnerPlanner.getContentPane().add(mainView);
+		dinnerPlanner.renderView( mainView );
+		
+		dinnerPlanner.renderView( mainView );
+		
 		
 		//Resize it so content fits
 		dinnerPlanner.pack();
