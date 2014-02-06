@@ -94,6 +94,20 @@ public class DinnerModel implements IDinnerModel {
 		dish4.addIngredient(dish4ing5);
 		dishes.add(dish4);
 		
+		
+		Dish dish5 = new Dish("Baked Brie",Dish.MAIN,"bakedbrie.jpg"," Preheat oven to 350 degrees F. If you want, start with chilled brie and use a sharp knife to carefully cut off the thin top rind of the cheese. This may help the crust stay with the cheese when served. The rind is edible so you don't have to do this step if you don't want to. On a stick-free cookie sheet, lay out the puff pastry or the crescent rolls flat; put the brie round or wedge on top. Spread jam on brie, fold dough over top, cutting off excess dough. Drizzle maple syrup and place a handful of brown sugar on top. Bake at 350º for 25-30 minutes, pastry should be golden brown. Let cool for 10 minutes before serving. Serve with crackers and apple slices.");
+		Ingredient dish5ing1 = new Ingredient("maple syrup",4,"cup",2);
+		Ingredient dish5ing2 = new Ingredient("pastry dough",1,"cup",6);
+		Ingredient dish5ing3 = new Ingredient("brie cheese",300,"g",1);
+		Ingredient dish5ing4 = new Ingredient("sweet jam",300,"g",5);
+		Ingredient dish5ing5 = new Ingredient(" brown sugar",100,"g",6);
+		dish5.addIngredient(dish5ing1);
+		dish5.addIngredient(dish5ing2);
+		dish5.addIngredient(dish5ing3);
+		dish5.addIngredient(dish5ing4);
+		dish5.addIngredient(dish5ing5);
+		dishes.add(dish5);
+		
 		selectedDished.add(dish1); // !!! just added that for testing
 		selectedDished.add(dish2); // !!! just added that for testing
 	}
