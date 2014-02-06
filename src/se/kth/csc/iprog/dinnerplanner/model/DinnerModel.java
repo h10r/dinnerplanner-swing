@@ -41,6 +41,7 @@ public class DinnerModel implements IDinnerModel {
 		dish1.addIngredient(dish1ing5);
 		dishes.add(dish1);
 		
+		
 		Dish dish2 = new Dish("Meat balls",Dish.MAIN,"meatballs.jpg","Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.");
 		Ingredient dish2ing1 = new Ingredient("extra lean ground beef",115,"g",20);
 		Ingredient dish2ing2 = new Ingredient("sea salt",0.7,"g",3);
@@ -65,6 +66,9 @@ public class DinnerModel implements IDinnerModel {
 		dish2.addIngredient(dish2ing10);
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
+		
+		selectedDished.add(dish1); // !!! just added that for testing
+		selectedDished.add(dish2); // !!! just added that for testing
 		
 	}
 	
@@ -169,6 +173,33 @@ public class DinnerModel implements IDinnerModel {
 					itrCount++;
 				}
 				tableModel = new DefaultTableModel(tableData,colTitles);
+		return tableModel;
+	}
+	
+	// method that returns an a tableModel object with all ingredients needed for the dinner 
+	public DefaultTableModel getIngredientsTableModel(){
+		
+		DefaultTableModel tableModel = null;
+		
+		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
+		Object[][] ingredientsData = new Object[100][3];
+		
+		// iterate through whole menu
+		int i = 0;
+		for(Dish dish : this.getFullMenu()){		
+			for(Ingredient ingredient : dish.getIngredients() ) {
+				//System.out.println(ingredient.getName());
+				ingredientsData[i][0] = ingredient.getName();
+				ingredientsData[i][1] = ingredient.getQuantity() + " " + ingredient.getUnit();
+				ingredientsData[i][2] = "$" + ingredient.getPrice();
+				//allIngredients.add(ingredient);
+				i++;
+			}
+		}
+		
+		//System.out.println(ingredientsData);
+				
+		tableModel = new DefaultTableModel(ingredientsData, colTitles);
 		return tableModel;
 	}
 	
