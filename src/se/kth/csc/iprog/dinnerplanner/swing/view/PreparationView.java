@@ -1,5 +1,5 @@
 package se.kth.csc.iprog.dinnerplanner.swing.view;
-/*
+
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -9,10 +9,6 @@ import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import javax.swing.JTextArea;
 
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.factories.FormFactory;
-import com.jgoodies.forms.layout.RowSpec;
 
 
 public class PreparationView extends JPanel {
@@ -93,4 +89,4 @@ public class PreparationView extends JPanel {
 		
 	}
 }
-*/
+
