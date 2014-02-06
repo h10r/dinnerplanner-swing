@@ -101,6 +101,26 @@ public class MainSidebarView extends JPanel {
 		gbc_btnIngredients.gridx = 2;
 		gbc_btnIngredients.gridy = 7;
 		add(btnIngredients, gbc_btnIngredients);
+		
+		this.addActionListenerForPreparation( btnPreparation );
+		this.addActionListenerForIngeredients( btnIngredients );
 	}
 	
+	void addActionListenerForIngeredients( JButton btn ) {
+		btn.addActionListener(new ActionListener() {
+			   @Override
+			   public void actionPerformed(ActionEvent e) {
+				   System.out.println("addActionListenerForIngeredients");
+			   }
+		});
+	}
+	
+	void addActionListenerForPreparation( JButton btn ) {
+		btn.addActionListener(new ActionListener() {
+			   @Override
+			   public void actionPerformed(ActionEvent e) {
+				   System.out.println("addActionListenerForPreparation");
+			   }
+		});
+	}
 }

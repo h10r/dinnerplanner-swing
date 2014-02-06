@@ -4,6 +4,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.ScrollPaneConstants;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -22,9 +23,11 @@ import java.io.IOException;
 import java.util.Set;
 
 import javax.swing.JScrollPane;
+
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Component;
+
 import javax.swing.BoxLayout;
 
 
@@ -85,8 +88,8 @@ public class MainContentView extends JPanel {
 
 		for ( int i = 0; i < 10; i++ ) {
 			this.setupInlinePanels( starterContentPanel, 1 );
-			this.setupInlinePanels( mainContentPanel, 1 );
-			this.setupInlinePanels( desertContentPanel, 1 );
+			this.setupInlinePanels( mainContentPanel, 2 );
+			this.setupInlinePanels( desertContentPanel, 3 );
 		}
 		
 		// starterContentPanel.
@@ -95,7 +98,9 @@ public class MainContentView extends JPanel {
 	public void setUpScrollPanes( JComponent parentComponent, JComponent currentComponent ) {
 		JScrollPane scrollFrame = new JScrollPane(currentComponent);
 		currentComponent.setAutoscrolls(true);
-		scrollFrame.setPreferredSize(new Dimension( 400,400 ));
+		scrollFrame.setPreferredSize(new Dimension( 550,660 ));
+		scrollFrame.setHorizontalScrollBarPolicy( ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
+		scrollFrame.setVerticalScrollBarPolicy( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
 		parentComponent.add(scrollFrame);
 	}
 	
