@@ -1,34 +1,30 @@
 package se.kth.csc.iprog.dinnerplanner.swing.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.border.LineBorder;
+import se.kth.csc.iprog.dinnerplanner.model.Dish;
+
 import java.awt.Font;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.Dimension;
+
 import javax.swing.JScrollPane;
+
 import java.awt.Insets;
 
 
@@ -45,14 +41,20 @@ public class DishView extends JPanel {
 	private final JTextPane txtInfoPane = new JTextPane();
 	private final JScrollPane scrollPane = new JScrollPane();
 	private final JTable table = new JTable();
+	
+	private DinnerModel modelInstance = new DinnerModel();
 
 	
-	public DishView(){
+	public DishView(DinnerModel model){
 		
-		
+		modelInstance = model;
+		Dish selectedDish = modelInstance.getSelectedDish(1);
 		//get current dish specific data.
+		lblName.setText(selectedDish.getName()); 
+		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice());
+		modelInstance.getTotalMenuPrice();
 		try {
-		    dishImage = ImageIO.read(new File("images/toast.jpg"));
+		    dishImage = ImageIO.read(new File("images/"+selectedDish.getImage()));
 		    imageLabel = new JLabel(new ImageIcon(dishImage));
 		    imageDish = imageLabel;
 		    System.out.println(dishImage.getWidth());
@@ -115,11 +117,21 @@ public class DishView extends JPanel {
 				{null, null, null},
 			},
 			new String[] {
-				"Ingredients", "Quality", "Cost"
+				"Ingredients", "Quantity", "Cost"
 			}
 		));
 		
 		scrollPane.setViewportView(table);	
+	}
+
+
+	public DinnerModel getModelInstance() {
+		return modelInstance;
+	}
+
+
+	public void setModelInstance(DinnerModel modelInstance) {
+		this.modelInstance = modelInstance;
 	}
 	
 }

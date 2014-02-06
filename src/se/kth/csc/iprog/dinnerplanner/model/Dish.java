@@ -71,5 +71,15 @@ public class Dish {
 		}
 		return false;
 	}
+	
+	public float getTotalDishPrice() {
+		float totalPrice = -1.0f;
+			
+			for(Ingredient i : this.getIngredients() ) {
+				totalPrice += i.getPrice();
+			}
+		
+		return totalPrice;
+	}
 
 }

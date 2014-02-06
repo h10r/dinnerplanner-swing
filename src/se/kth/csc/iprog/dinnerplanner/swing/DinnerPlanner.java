@@ -29,9 +29,12 @@ public class DinnerPlanner extends JFrame {
 		DinnerPlanner dinnerPlanner = new DinnerPlanner();
 		dinnerPlanner.setTitle("Dinner Planner");
 		
+		//create an instance of Model to pass to views
+		DinnerModel modelInstance = dinnerPlanner.getModel();
+		
 		//Creating the first view
 		//MainView mainView = new MainView();
-		DishView dishView = new DishView();
+		DishView dishView = new DishView(modelInstance);
 		
 		//Adding the view to the main JFrame
 		dinnerPlanner.getContentPane().add(dishView);
@@ -42,7 +45,7 @@ public class DinnerPlanner extends JFrame {
 		//and starting the JFrame
 		dinnerPlanner.setVisible(true);
 		dinnerPlanner.setSize(800, 600);
-
+		
 	}
 
 }
