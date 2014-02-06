@@ -50,7 +50,7 @@ public class DishView extends JPanel {
 	public DishView(DinnerModel model){
 		
 		modelInstance = model;
-		Dish selectedDish = modelInstance.getSelectedDish(2);
+		Dish selectedDish = modelInstance.getSelectedDish(1);
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 

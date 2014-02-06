@@ -54,11 +54,11 @@ public class DinnerPlanner extends JFrame {
 		DinnerModel modelInstance = dinnerPlanner.getModel();
 		
 		//Creating the first view
-		//MainView mainView = new MainView();
-		DishView dishView = new DishView(modelInstance);
+		MainView mainView = new MainView( modelInstance );
+		//DishView dishView = new DishView(modelInstance);
 		
 		//Adding the view to the main JFrame
-		dinnerPlanner.getContentPane().add(dishView);
+		dinnerPlanner.getContentPane().add(mainView);
 		
 		//Resize it so content fits
 		dinnerPlanner.pack();
