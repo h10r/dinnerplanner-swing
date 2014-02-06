@@ -108,6 +108,33 @@ public class DinnerModel implements IDinnerModel {
 		dish5.addIngredient(dish5ing5);
 		dishes.add(dish5);
 		
+		
+		Dish dish6 = new Dish("General Tso's Chicken",Dish.MAIN,"chicken.jpg","In a large bowl, thoroughly blend the 1/2 cup of cornstarch and the eggs; add the chicken and toss to coat. If the mixture is too thick, add some vegetable oil to separate the pieces.In a small bowl, prepare the sauce mixture by combining the 2 tsp cornstarch with the wine, vinegar, sugar and soy sauce.First-Stage Frying: Heat 1-2 inches of peanut oil in a wok to medium-high heat (350-400).Fry the chicken in small batches, just long enough to cook the chicken through.Remove the chicken to absorbent paper and allow to stand (this step can be performed well in advance, along with the sauce mixture, with both refrigerated).Second-Stage Frying: Leave a tablespoon or two of the oil in the wok.Add the pepper pods to the oil and stir-fry briefly, awakening the aroma but not burning them.Return the chicken to the wok and stir-fry until the pieces are crispy brown.The General's Favorite Sauce: Add the sauce-mixture to the wok, tossing over the heat until the sauce caramelizes into a glaze (1-2 minutes).Serve immediately.Serves 4, along with steamed broccoli and rice.");
+		Ingredient dish6ing1 = new Ingredient("extra lean ground beef",115,"g",20);
+		Ingredient dish6ing2 = new Ingredient("sea salt",0.7,"g",3);
+		Ingredient dish6ing3 = new Ingredient("small onion, diced",0.25,"",2);
+		Ingredient dish6ing4 = new Ingredient("garlic salt",0.6,"g",3);
+		Ingredient dish6ing5 = new Ingredient("Italian seasoning",0.3,"g",3);
+		Ingredient dish6ing6 = new Ingredient("dried oregano",0.3,"g",3);
+		Ingredient dish6ing7 = new Ingredient("crushed red pepper flakes",0.6,"g",3);
+		Ingredient dish6ing8 = new Ingredient("Worcestershire sauce",16,"ml",7);
+		Ingredient dish6ing9 = new Ingredient("milk",20,"ml",4);
+		Ingredient dish6ing10 = new Ingredient("grated Parmesan cheese",5,"g",8);
+		Ingredient dish6ing11 = new Ingredient("seasoned bread crumbs",115,"g",4);
+		dish6.addIngredient(dish6ing1);
+		dish6.addIngredient(dish6ing2);
+		dish6.addIngredient(dish6ing3);
+		dish6.addIngredient(dish6ing4);
+		dish6.addIngredient(dish6ing5);
+		dish6.addIngredient(dish6ing6);
+		dish6.addIngredient(dish6ing7);
+		dish6.addIngredient(dish6ing8);
+		dish6.addIngredient(dish6ing9);
+		dish6.addIngredient(dish6ing10);
+		dish6.addIngredient(dish6ing11);
+		dishes.add(dish6);
+		
+		
 		selectedDished.add(dish1); // !!! just added that for testing
 		selectedDished.add(dish2); // !!! just added that for testing
 	}
