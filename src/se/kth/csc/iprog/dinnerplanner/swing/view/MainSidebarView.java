@@ -33,6 +33,7 @@ public class MainSidebarView extends JPanel {
 		JLabel lblDragArea = new JLabel("Drag your dish to the menu");
 		
 		JButton btnPreparation = new JButton("Preparation");
+		/*
 		btnPreparation.addActionListener( new ActionListener() {			 
             public void actionPerformed(ActionEvent e)
             {
@@ -41,7 +42,7 @@ public class MainSidebarView extends JPanel {
             	System.out.println("You clicked the button");
             }
         });
-
+		*/
    
 		JButton btnIngredients = new JButton("Ingredients");
 		
