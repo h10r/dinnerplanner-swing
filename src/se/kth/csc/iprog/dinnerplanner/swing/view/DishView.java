@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -14,19 +13,13 @@ import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
-import se.kth.csc.iprog.dinnerplanner.model.Ingredient;
 
 import java.awt.Font;
-
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import java.awt.Dimension;
-
 import javax.swing.JScrollPane;
-
 import java.awt.Insets;
 
 
@@ -57,8 +50,7 @@ public class DishView extends JPanel {
 
 		//try to open image file for dish
 		try {
-		    dishImage = ImageIO.read(new File("images/"+selectedDish.getImage()));
-		    imageLabel = new JLabel(new ImageIcon(dishImage));
+		    imageLabel = selectedDish.getImageIcon();
 		    imageDish = imageLabel;
 		} catch (IOException e) {
 			System.out.println("error image file not found");
