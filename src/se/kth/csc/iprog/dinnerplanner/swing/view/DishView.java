@@ -41,7 +41,7 @@ public class DishView extends JPanel {
 	private final JLabel lblPricePerPerson = new JLabel("price");
 	private final JPanel panel_1 = new JPanel();
 	private final JTextPane txtInfoPane = new JTextPane();
-	private final JScrollPane scrollPane = new JScrollPane();
+	private final JScrollPane ingredientsViewPanel = new JScrollPane();
 	private final JTable table = new JTable();
 	
 	private DinnerModel modelInstance = new DinnerModel();
@@ -54,6 +54,7 @@ public class DishView extends JPanel {
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
+		lblPricePerPerson.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice()+" for "+modelInstance.getNumberOfGuests()+" guests.");
 		modelInstance.getTotalMenuPrice();
 		
@@ -117,7 +118,7 @@ public class DishView extends JPanel {
 		panel.add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
 		lblName.setBorder(new EmptyBorder(0, 10, 0, 0));
-		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblName.setFont(new Font("Dialog", Font.BOLD, 20));
 		panel_1.add(lblName);
 		lblPricePerPerson.setBorder(new EmptyBorder(10, 10, 10, 0));
 		panel_1.add(lblPricePerPerson);
@@ -130,9 +131,9 @@ public class DishView extends JPanel {
 		txtInfoPane.setText("<center><h3>Dish Preparation</h3><p>"+selectedDish.getDescription()+"</p></center>");
 		
 		add(txtInfoPane, BorderLayout.WEST);
-		add(scrollPane, BorderLayout.CENTER);
+		add(ingredientsViewPanel, BorderLayout.CENTER);
 		table.setModel(new DefaultTableModel(tableData,colTitles));
-		scrollPane.setViewportView(table);	
+		ingredientsViewPanel.setViewportView(table);	
 	}
 
 
