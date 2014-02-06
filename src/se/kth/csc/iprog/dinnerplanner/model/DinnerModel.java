@@ -10,7 +10,7 @@ public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	int numberOfGuests;
-	int clickedDish;
+	int clickedDish = 3;
 	
 	Set<Dish> selectedDished = new HashSet<Dish>();
 	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
@@ -67,9 +67,23 @@ public class DinnerModel implements IDinnerModel {
 		dish2.addIngredient(dish2ing11);
 		dishes.add(dish2);
 		
+		
+		Dish dish3 = new Dish("Sour dough",Dish.STARTER,"sourdough.jpg","In a large bowl, combine the water, yeast, and sugar. Let sit until the yeast becomes foamy, about 5 minutes. (If the yeast does not foam, discard the mixture and begin again with a new yeast.) Add the flour and stir vigorously to work air into the mixture. Cover with a towel let rest in a warm, draft-free place (an oven with its pilot light or light bulb turned on works well) for 8 to12 hours. (The mixture should become very bubbly.) Use immediately or cover loosely with plastic wrap and store in the refrigerator");
+		Ingredient dish3ing1 = new Ingredient("bread flour",2,"cups",4);
+		Ingredient dish3ing2 = new Ingredient("sourdough starter",1.5,"cups",6);
+		Ingredient dish3ing3 = new Ingredient("salt",0.75,"teaspoon",1);
+		Ingredient dish3ing4 = new Ingredient("dry yeast",1.5,"tablespoon",5);
+		Ingredient dish3ing5 = new Ingredient("sugar",1,"teaspoon",2);
+		dish3.addIngredient(dish1ing1);
+		dish3.addIngredient(dish1ing2);
+		dish3.addIngredient(dish1ing3);
+		dish3.addIngredient(dish1ing4);
+		dish3.addIngredient(dish1ing5);
+		dishes.add(dish3);
+
+		
 		selectedDished.add(dish1); // !!! just added that for testing
 		selectedDished.add(dish2); // !!! just added that for testing
-		
 	}
 	
 	/**
@@ -204,10 +218,10 @@ public class DinnerModel implements IDinnerModel {
 	}
 	
 	public int getClickedDish(){
-		return 1;
+		return clickedDish;
 	}
 	
-	public void setClickedDish(){
-		
+	public void setClickedDish(int selection){
+		clickedDish = selection;
 	}
 }

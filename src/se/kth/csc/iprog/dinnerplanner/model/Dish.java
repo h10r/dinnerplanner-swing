@@ -1,7 +1,14 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class Dish {
 	
@@ -40,6 +47,15 @@ public class Dish {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public JLabel getImageIcon() throws IOException {
+		BufferedImage dishImage;
+		try {
+			dishImage = ImageIO.read(new File("images/"+this.getImage()));
+		} catch (IOException e) {
+			dishImage = ImageIO.read(new File("images/default.gif"));
+		}
+	    return new JLabel(new ImageIcon(dishImage));
 	}
 	public String getDescription() {
 		return description;
