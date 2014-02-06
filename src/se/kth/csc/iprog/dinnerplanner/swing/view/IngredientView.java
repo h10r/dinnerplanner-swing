@@ -3,42 +3,48 @@ package se.kth.csc.iprog.dinnerplanner.swing.view;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Font;
 
 
 public class IngredientView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-	
+	private final JPanel topPane = new JPanel();
+	private final JScrollPane scrollPane = new JScrollPane();
+	private final JTable ingTable = new JTable();
 
 	
-	//JButton plusButton = new JButton("World");
-	//JButton minusButton = new JButton("Wayne's");
-	
-	public IngredientView(DinnerModel model) {
-				
-		// column names for table
-		String[] columnNames = {"Ingredient", "Quantity", "Cost"};
+	public IngredientView(DinnerModel modelInstance) {
 		
-		// new instance of dinnerModel 
-		//DinnerModel dinnerModel = new DinnerModel();
+		setLayout(new BorderLayout(0, 0));
+		
+		add(topPane, BorderLayout.NORTH);
+		topPane.setLayout(new BorderLayout(10, 10));
+		
+		JLabel lblListOfIngredients = new JLabel("Shopping List");
+		lblListOfIngredients.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		topPane.add(lblListOfIngredients, BorderLayout.NORTH);
 				
-		// The components of our view
-		JLabel label = new JLabel();
-		//JTable ingredientTable = new JTable(idinnerModel.getAllIngredients(), columnNames);
+		// add panels to layout
+		add(topPane, BorderLayout.NORTH);
+		add(scrollPane, BorderLayout.CENTER);
 
-		label.setText("List of all ingredients");
+		// set Model of table 
+		ingTable.setModel(modelInstance.getIngredientsTableModel());
 		
-		// Add label to the view
-		this.add(label);
-		//this.add(ingredientTable);
-		
-		
-		// Setup the rest of the view layout
+		// add table to viewport
+		scrollPane.add(ingTable);
+		scrollPane.setViewportView(ingTable);
 	}
-	
 }
