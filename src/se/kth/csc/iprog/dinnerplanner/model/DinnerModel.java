@@ -10,7 +10,7 @@ public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	int numberOfGuests;
-	int clickedDish;
+	int clickedDish = 3;
 	
 	Set<Dish> selectedDished = new HashSet<Dish>();
 	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
@@ -173,10 +173,10 @@ public class DinnerModel implements IDinnerModel {
 	}
 	
 	public int getClickedDish(){
-		return 1;
+		return clickedDish;
 	}
 	
-	public void setClickedDish(){
-		
+	public void setClickedDish(int selection){
+		clickedDish = selection;
 	}
 }
