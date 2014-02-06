@@ -1,4 +1,5 @@
 package se.kth.csc.iprog.dinnerplanner.swing.view;
+/*
 
 import java.awt.Font;
 
@@ -107,3 +108,4 @@ public class PreparationView extends JPanel {
 		
 	}
 }
+*/

@@ -18,6 +18,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.io.IOException;
 import java.util.Set;
 
 import javax.swing.JScrollPane;
@@ -39,7 +40,7 @@ public class MainContentView extends JPanel {
 	private DinnerModel modelInstance;
 	private final JScrollPane starterScrollPane = new JScrollPane();
 	
-	public MainContentView( DinnerModel modelInstance ){
+	public MainContentView( DinnerModel modelInstance ) {
 		this.modelInstance = modelInstance;
 		
 		setLayout(new BorderLayout(0, 0));
@@ -118,27 +119,30 @@ public class MainContentView extends JPanel {
 		
 		
 		// Setup the rest of the view layout
-		
-		this.setupInlinePanels( starterPanel, 1 );
+
+		for ( int i = 0; i < 10; i++ ) {
+			this.setupInlinePanels( starterPanel, 1 );
+		}
 		
 		// starterContentPanel.
 	}
 	
 	public void setupInlinePanels( JComponent currentComponent, int typeOfDish  ) {
-		System.out.println("fucken");
 		
 		Set<Dish> dishes = this.modelInstance.getDishes();
 		
-		for(Dish d : dishes) {	
+		for(Dish d : dishes) {
 			if(d.getType() == typeOfDish){
-				JLabel newDish = new JLabel();
-				
-				newDish.setText( d.getName()); 
-				newDish.setFont(new Font("Dialog", Font.BOLD, 16));
-				
-				System.out.println( newDish.getText() );
-				
-				currentComponent.add( newDish );
+				try {
+					JLabel newDish = d.getImageIcon();
+					
+					newDish.setText( d.getName()); 
+					newDish.setFont(new Font("Dialog", Font.BOLD, 16));
+					
+					currentComponent.add( newDish );
+				} catch (IOException e) {
+					System.err.println( e );
+				}
 			}
 		}
 	}
