@@ -27,6 +27,10 @@ import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import java.awt.Dimension;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 
@@ -116,9 +120,11 @@ public class MainContentView extends JPanel {
 			if(d.getType() == typeOfDish){
 				try {
 					JLabel newDish = d.getImageIcon();
-					
+				
 					newDish.setText( d.getName()); 
 					newDish.setFont(new Font("Dialog", Font.BOLD, 16));
+					
+					this.addMouseListenerForDish( newDish );
 					
 					currentComponent.add( newDish );
 				} catch (IOException e) {
@@ -127,4 +133,13 @@ public class MainContentView extends JPanel {
 			}
 		}
 	}
+	
+	void addMouseListenerForDish(JLabel lbl) {
+		lbl.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt)
+            {
+            	controllerInstance.openView( new DishView( modelInstance, ((JLabel)evt.getSource()).getText() ), "Diner Planer - Dish"  );
+            }
+        });
+	}	
 }

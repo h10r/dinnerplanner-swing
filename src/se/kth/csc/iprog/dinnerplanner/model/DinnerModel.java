@@ -193,6 +193,15 @@ public class DinnerModel implements IDinnerModel {
 		return new Dish("",Dish.STARTER,"","");
 	}
 	
+	public Dish getSelectedDishByName(String searchTerm) {
+		for(Dish d : dishes){
+			if( searchTerm.equals( d.getName() ) ){
+				return d;
+			}
+		}
+		return new Dish("",Dish.STARTER,"","");
+	}
+	
 	/**
 	 * Returns all the dishes on the menu.
 	 */
@@ -222,7 +231,7 @@ public class DinnerModel implements IDinnerModel {
 		return totalPrice;
 	}
 	
-	public DefaultTableModel getDishTableModel(int type){
+	public DefaultTableModel getDishTableModel(String name){
 		DefaultTableModel tableModel = null;
 		
 		//assign ingredients data to table
@@ -230,7 +239,7 @@ public class DinnerModel implements IDinnerModel {
 				String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
 				Object[][] tableData = new Object[25][3];
 				
-				Iterator<Ingredient> ingIterator = this.getSelectedDish(type).getIngredients().iterator();
+				Iterator<Ingredient> ingIterator = this.getSelectedDishByName(name).getIngredients().iterator();
 				int itrCount = 0;
 				while(ingIterator.hasNext()){
 					Ingredient ingredient = ingIterator.next();
