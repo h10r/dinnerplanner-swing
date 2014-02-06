@@ -19,8 +19,8 @@ public class IngredientView extends JPanel {
 	//JButton plusButton = new JButton("World");
 	//JButton minusButton = new JButton("Wayne's");
 	
-	public IngredientView() {
-		
+	public IngredientView(DinnerModel model) {
+				
 		// column names for table
 		String[] columnNames = {"Ingredient", "Quantity", "Cost"};
 		
