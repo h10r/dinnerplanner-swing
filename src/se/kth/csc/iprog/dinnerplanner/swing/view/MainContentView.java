@@ -1,6 +1,7 @@
 package se.kth.csc.iprog.dinnerplanner.swing.view;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -13,10 +14,12 @@ import java.awt.BorderLayout;
 
 import javax.swing.JTextField;
 
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.Set;
+
 import javax.swing.JScrollPane;
 
 
@@ -116,20 +119,28 @@ public class MainContentView extends JPanel {
 		
 		// Setup the rest of the view layout
 		
-		this.setupInlinePanels();
+		this.setupInlinePanels( starterPanel, 1 );
 		
 		// starterContentPanel.
 	}
 	
-	public void setupInlinePanels() {
+	public void setupInlinePanels( JComponent currentComponent, int typeOfDish  ) {
+		System.out.println("fucken");
+		
 		Set<Dish> dishes = this.modelInstance.getDishes();
 		
-		for(Dish d : dishes){
-			JLabel newDish = new JLabel();
-			
-			
+		for(Dish d : dishes) {	
+			if(d.getType() == typeOfDish){
+				JLabel newDish = new JLabel();
+				
+				newDish.setText( d.getName()); 
+				newDish.setFont(new Font("Dialog", Font.BOLD, 16));
+				
+				System.out.println( newDish.getText() );
+				
+				currentComponent.add( newDish );
+			}
 		}
-		
 	}
 	
 	
