@@ -65,7 +65,7 @@ public class DinnerPlanner extends JFrame {
 		
 		//and starting the JFrame
 		dinnerPlanner.setVisible(true);
-		dinnerPlanner.setSize(800, 600);
+		dinnerPlanner.setSize(1024,768);
 		
 	}
 

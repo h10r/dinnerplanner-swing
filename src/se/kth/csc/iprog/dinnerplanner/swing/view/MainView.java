@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
+import java.awt.Dimension;
 
 
 public class MainView extends JPanel {
@@ -17,9 +18,9 @@ public class MainView extends JPanel {
 	public MainView(DinnerModel modelInstance){
 		
 		MainContentView contentView = new MainContentView( modelInstance );
+		contentView.setPreferredSize(new Dimension(600, 16));
 		MainSidebarView sidebarView = new MainSidebarView( modelInstance );
-		
-		this.setLayout(new BorderLayout() );
+		setLayout(new BorderLayout(0, 0));
 				
 		this.add( contentView, BorderLayout.WEST);
 		this.add( sidebarView, BorderLayout.EAST);
