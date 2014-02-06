@@ -1,17 +1,12 @@
 package se.kth.csc.iprog.dinnerplanner.swing.view;
 /*
 
-import java.awt.Font;
-
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import com.jgoodies.forms.layout.FormLayout;
@@ -39,56 +34,46 @@ public class PreparationView extends JPanel {
 		
 		int dishNumber = modelInstance.getClickedDish();
 		Dish selectedDish = modelInstance.getSelectedDish(dishNumber);
-							
-		setLayout(new FormLayout(new ColumnSpec[] {
-				FormFactory.UNRELATED_GAP_COLSPEC,
-				ColumnSpec.decode("45px"),
-				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("90px"),},
-			new RowSpec[] {
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("14px"),
-				FormFactory.UNRELATED_GAP_ROWSPEC,
-				RowSpec.decode("20px"),
-				FormFactory.NARROW_LINE_GAP_ROWSPEC,
-				RowSpec.decode("76px"),
-				RowSpec.decode("20px"),
-				RowSpec.decode("20px"),
-				FormFactory.LINE_GAP_ROWSPEC,
-				RowSpec.decode("76px"),
-				RowSpec.decode("20px"),
-				RowSpec.decode("20px"),
-				FormFactory.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("76px"),}));
+		setLayout(null);
+		lblDinnerMenuPreparation.setBounds(11, 6, 119, 14);
 
 		lblDinnerMenuPreparation.setText("Dinner Menu Preparation");
 		
 		// Add label to the view
-		this.add(lblDinnerMenuPreparation, "2, 2, 3, 1, left, top");
+		this.add(lblDinnerMenuPreparation);
+		lblStarter.setBounds(11, 34, 38, 14);
 		
-		add(lblStarter, "2, 4, left, center");
+		add(lblStarter);
+		LblStarterName.setBounds(61, 34, 90, 14);
 		
-		add(LblStarterName, "4, 4");
+		add(LblStarterName);
+		lblMain.setBounds(20, 153, 26, 14);
 		
-		add(lblMain, "2, 8, center, center");
+		add(lblMain);
+		LblMainName.setBounds(61, 153, 90, 14);
 		
-		add(LblMainName, "4, 8");
+		add(LblMainName);
+		lblDessert.setBounds(15, 274, 41, 14);
 		
-		add(lblDessert, "2, 12, right, center");
+		add(lblDessert);
 		
 		
 		
 		JTextArea txtStarterRecipe = new JTextArea();
+		txtStarterRecipe.setBounds(11, 54, 140, 76);
 		txtStarterRecipe.setEditable(false);
-		add(txtStarterRecipe, "2, 6, 3, 1, fill, fill");
+		add(txtStarterRecipe);
+		txtMainRecipe.setBounds(11, 175, 140, 76);
 		txtMainRecipe.setEditable(false);
 		
-		add(txtMainRecipe, "2, 10, 3, 1, fill, fill");
+		add(txtMainRecipe);
+		LblDessertName.setBounds(61, 274, 90, 14);
 		
-		add(LblDessertName, "4, 12");
+		add(LblDessertName);
+		txtDessertRecipe.setBounds(11, 297, 140, 76);
 		txtDessertRecipe.setEditable(false);
 		
-		add(txtDessertRecipe, "2, 14, 3, 1, fill, fill");
+		add(txtDessertRecipe);
 		
 		
 		// Get Dish Specific Data
