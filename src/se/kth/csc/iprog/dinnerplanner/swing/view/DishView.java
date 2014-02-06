@@ -43,60 +43,17 @@ public class DishView extends JPanel {
 	private final JTextPane txtInfoPane = new JTextPane();
 	private final JScrollPane ingredientsViewPanel = new JScrollPane();
 	private final JTable table = new JTable();
-	
-	private DinnerModel modelInstance = new DinnerModel();
 
 	
-	public DishView(DinnerModel model){
-		
-		modelInstance = model;
-		Dish selectedDish = modelInstance.getSelectedDish(2);
+	public DishView(DinnerModel modelInstance){
+		int dishNumber = modelInstance.getClickedDish();
+		Dish selectedDish = modelInstance.getSelectedDish(dishNumber);
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
 		lblPricePerPerson.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice()+" for "+modelInstance.getNumberOfGuests()+" guests.");
 		modelInstance.getTotalMenuPrice();
-		
-		//set up empty table data.
-		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
-		Object[][] tableData = new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			};
-		
-		Iterator<Ingredient> ingIterator = selectedDish.getIngredients().iterator();
-		int itrCount = 0;
-		while(ingIterator.hasNext()){
-			Ingredient ingredient = ingIterator.next();
-			tableData[itrCount][0] = ingredient.getName();
-			tableData[itrCount][1] = ingredient.getQuantity()+" "+ingredient.getUnit();
-			tableData[itrCount][2] = "$"+ingredient.getPrice();
-			itrCount++;
-		}
 
 		//try to open image file for dish
 		try {
@@ -132,18 +89,9 @@ public class DishView extends JPanel {
 		
 		add(txtInfoPane, BorderLayout.WEST);
 		add(ingredientsViewPanel, BorderLayout.CENTER);
-		table.setModel(new DefaultTableModel(tableData,colTitles));
+
+		table.setModel(modelInstance.getDishTableModel(dishNumber));
 		ingredientsViewPanel.setViewportView(table);	
-	}
-
-
-	public DinnerModel getModelInstance() {
-		return modelInstance;
-	}
-
-
-	public void setModelInstance(DinnerModel modelInstance) {
-		this.modelInstance = modelInstance;
 	}
 	
 }

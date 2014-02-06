@@ -1,12 +1,16 @@
 package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
+
+import javax.swing.table.DefaultTableModel;
 
 public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	int numberOfGuests;
+	int clickedDish;
 	
 	Set<Dish> selectedDished = new HashSet<Dish>();
 	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
@@ -147,4 +151,32 @@ public class DinnerModel implements IDinnerModel {
 		return totalPrice;
 	}
 	
+	public DefaultTableModel getDishTableModel(int type){
+		DefaultTableModel tableModel = null;
+		
+		//assign ingredients data to table
+		//set up empty table data.
+				String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
+				Object[][] tableData = new Object[25][3];
+				
+				Iterator<Ingredient> ingIterator = this.getSelectedDish(type).getIngredients().iterator();
+				int itrCount = 0;
+				while(ingIterator.hasNext()){
+					Ingredient ingredient = ingIterator.next();
+					tableData[itrCount][0] = ingredient.getName();
+					tableData[itrCount][1] = ingredient.getQuantity()+" "+ingredient.getUnit();
+					tableData[itrCount][2] = "$"+ingredient.getPrice();
+					itrCount++;
+				}
+				tableModel = new DefaultTableModel(tableData,colTitles);
+		return tableModel;
+	}
+	
+	public int getClickedDish(){
+		return 1;
+	}
+	
+	public void setClickedDish(){
+		
+	}
 }
