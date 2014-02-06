@@ -73,12 +73,26 @@ public class DinnerModel implements IDinnerModel {
 		Ingredient dish3ing3 = new Ingredient("salt",0.75,"teaspoon",1);
 		Ingredient dish3ing4 = new Ingredient("dry yeast",1.5,"tablespoon",5);
 		Ingredient dish3ing5 = new Ingredient("sugar",1,"teaspoon",2);
-		dish3.addIngredient(dish1ing1);
-		dish3.addIngredient(dish1ing2);
-		dish3.addIngredient(dish1ing3);
-		dish3.addIngredient(dish1ing4);
-		dish3.addIngredient(dish1ing5);
+		dish3.addIngredient(dish3ing1);
+		dish3.addIngredient(dish3ing2);
+		dish3.addIngredient(dish3ing3);
+		dish3.addIngredient(dish3ing4);
+		dish3.addIngredient(dish3ing5);
 		dishes.add(dish3);
+		
+		
+		Dish dish4 = new Dish("Ice Cream",Dish.DESERT,"icecream.jpg","Make sure that you have plenty of room spare in the freezer. First, separate the eggs, placing the yolks in a large bowl. (You will not need the whites for this recipe. You can use them to make meringues.)    Add the sugar to the egg yolks and whisk until pale and thick.    Add the cornflour (if using) and whisk well to incorporate into the egg yolks.    Put the cream and milk into a medium saucepan.    Cut the vanilla pod open lengthways and scrape out the seeds with the back of a knife, then add to the cream and milk.    Heat the cream and milk until just below boiling. Slowly pour the hot cream and milk onto the eggs and sugar, whisking as you go.    Sieve the custard into a clean pan, and set it over a very low heat. Stir the custard constantly with a wooden spoon, paying special attention to the corners of the pan, until it is steaming and has thickened slightly. The custard is ready when you can draw a clear line through it on the back of the wooden spoon. This can take up to 10 minutes.    Tip the custard into a large, shallow, freezer-proof container, and allow to cool to room temperature (you can speed this up by sitting the tub of custard in a large bowl of iced water).    Once at room temperature, place a lid on the custard and chill in the fridge overnight.    Once chilled, transfer the custard to the freezer and take it out every hour, for three hours, to whisk it with an electric handheld whisk. This will disperse the ice crystals and keep it smooth.    Then leave the ice-cream in the freezer for a final freeze, until it is solid.    Remove the ice cream from the freezer 10 minutes before serving, so that it’s easy to scoop.");
+		Ingredient dish4ing1 = new Ingredient("egg yolks",4,"",2);
+		Ingredient dish4ing2 = new Ingredient("vanilla pod",1,"",6);
+		Ingredient dish4ing3 = new Ingredient("milk",300,"ml",1);
+		Ingredient dish4ing4 = new Ingredient("double cream",300,"ml",5);
+		Ingredient dish4ing5 = new Ingredient(" golden caster sugar",100,"g",6);
+		dish4.addIngredient(dish4ing1);
+		dish4.addIngredient(dish4ing2);
+		dish4.addIngredient(dish4ing3);
+		dish4.addIngredient(dish4ing4);
+		dish4.addIngredient(dish4ing5);
+		dishes.add(dish4);
 		
 	}
 	
