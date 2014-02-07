@@ -253,6 +253,8 @@ public class DinnerModel implements IDinnerModel {
 		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
 		Object[][] ingredientsData = new Object[100][3];
 		
+		//System.out.println(this.getNumberOfGuests());
+		
 		// iterate through whole menu
 		int i = 0;
 		for(Dish dish : this.getFullMenu()){		
