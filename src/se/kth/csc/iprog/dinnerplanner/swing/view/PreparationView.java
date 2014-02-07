@@ -8,11 +8,14 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import javax.swing.JTextArea;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.util.Set;
+
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextPane;
 
@@ -97,6 +100,7 @@ public class PreparationView extends JPanel {
 		txtDessertInstructions.setPreferredSize(new Dimension(500, 150));
 		panel.add(txtDessertInstructions, gbc_txtDessertInstructions);
 				
+		
 		Dish starterDish = this.modelInstance.getSelectedDish(1);
 		lblStarterName.setText( starterDish.getName() );
 		txtStarterInstructions.setText( starterDish.getDescription() );

@@ -12,7 +12,7 @@ public class DinnerModel implements IDinnerModel {
 	int numberOfGuests;
 	int clickedDish = 3;
 	
-	Set<Dish> selectedDished = new HashSet<Dish>();
+	Set<Dish> fullMenu = new HashSet<Dish>();
 	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
 	
 	/**
@@ -126,8 +126,8 @@ public class DinnerModel implements IDinnerModel {
 		dish6.addIngredient(dish6ing11);
 		dishes.add(dish6);
 				
-		selectedDished.add(dish1); // !!! just added that for testing
-		selectedDished.add(dish2); // !!! just added that for testing
+		fullMenu.add(dish1); // !!! just added that for testing
+		fullMenu.add(dish2); // !!! just added that for testing
 	}
 	
 	/**
@@ -176,28 +176,28 @@ public class DinnerModel implements IDinnerModel {
 	 * Returns the dish that is on the menu for selected type (1 = starter, 2 = main, 3 = desert).
 	 */
 	public Dish getSelectedDish(int type) {
-		for(Dish d : dishes){
+		for(Dish d : fullMenu){
 			if(d.getType() == type){
 				return d;
 			}
 		}
-		return new Dish("Select a dish",Dish.STARTER,"","");
+		return new Dish("- Select Dish -",Dish.STARTER,"","");
 	}
 	
-	public Dish getSelectedDishByName(String searchTerm) {
+	public Dish getDishByName(String searchTerm) {
 		for(Dish d : dishes){
 			if( searchTerm.equals( d.getName() ) ){
 				return d;
 			}
 		}
-		return new Dish("Select a dish",Dish.STARTER,"","");
+		return new Dish("- Select Dish -",Dish.STARTER,"","");
 	}
 	
 	/**
 	 * Returns all the dishes on the menu.
 	 */
 	public Set<Dish> getFullMenu() {
-		return this.selectedDished;
+		return this.fullMenu;
 	}
 	
 	/**
@@ -230,7 +230,7 @@ public class DinnerModel implements IDinnerModel {
 				String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
 				Object[][] tableData = new Object[25][3];
 				
-				Iterator<Ingredient> ingIterator = this.getSelectedDishByName(name).getIngredients().iterator();
+				Iterator<Ingredient> ingIterator = this.getDishByName(name).getIngredients().iterator();
 				int itrCount = 0;
 				while(ingIterator.hasNext()){
 					Ingredient ingredient = ingIterator.next();
