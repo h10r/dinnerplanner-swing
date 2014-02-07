@@ -109,7 +109,7 @@ public class MainContentView extends JPanel {
 
 	public void setUpScrollPanes(JComponent parentComponent,
 			JComponent currentComponent) {
-		starterPanel.add(starterContentPanel, BorderLayout.SOUTH);
+		starterPanel.add(starterContentPanel, BorderLayout.NORTH);
 		currentComponent.setAutoscrolls(true);
 	}
 
