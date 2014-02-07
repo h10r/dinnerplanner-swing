@@ -115,27 +115,19 @@ public class MainSidebarView extends JPanel {
 		gbc_btnIngredients.gridy = 7;
 		add(btnIngredients, gbc_btnIngredients);
 
-		this.addActionListenerForPreparation(btnPreparation);
-		this.addActionListenerForIngredients(btnIngredients);
+		this.onClickOfButtonOpenViewActionListener( btnPreparation, new PreparationView( modelInstance ), "Diner Planer - Preparation" );
+		this.onClickOfButtonOpenViewActionListener( btnIngredients, new IngredientView( modelInstance ), "Diner Planer - Ingredient" );
 	}
 
-	void addActionListenerForIngredients(JButton btn) {
+	void onClickOfButtonOpenViewActionListener( JButton btn, JPanel newView, String viewTitle ) {
+		final String viewTitleForActionListener = viewTitle;
+		final JPanel newViewForActionListener = newView;
+		
 		btn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerInstance.openView( new IngredientView( modelInstance ), "Diner Planer - Ingredient"  );
+				controllerInstance.openView( newViewForActionListener, viewTitleForActionListener  );
 			}
 		});
-	}
-
-	void addActionListenerForPreparation(JButton btn) {
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controllerInstance.openView( new PreparationView( modelInstance ), "Diner Planer - Preparation"  );
-			}
-		});
-	}
-
-	
+	}	
 }

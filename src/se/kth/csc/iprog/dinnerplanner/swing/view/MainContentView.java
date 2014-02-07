@@ -143,21 +143,21 @@ public class MainContentView extends JPanel {
 
 	void addTextChangeListenerForSearchBar(JTextField textField, int typeOfDish) {
 
+		final int typeOfDishForKeyListener = typeOfDish;
+		
 		textField.addKeyListener( new KeyListener() {
 			@Override
-			public void keyTyped(KeyEvent arg0) {
+			public void keyTyped(KeyEvent evt) {
 			}
 
 			@Override
-			public void keyReleased(KeyEvent arg0) {
-			    // TODO Auto-generated method stub
-				System.out.println( ((JTextField)arg0.getSource()).getText() );
-
-				//modelInstance.filterDishesOfType( ((JTextField)arg0.getSource()).getText() , typeOfDish )
+			public void keyReleased(KeyEvent evt) {
+				String searchTerm = ((JTextField)evt.getSource()).getText();
+				modelInstance.filterDishesOfType( typeOfDishForKeyListener, searchTerm );
 			}
 
 			@Override
-			public void keyPressed(KeyEvent arg0) {
+			public void keyPressed(KeyEvent evt) {
 			    // TODO Auto-generated method stub
 			}
 		});
