@@ -46,7 +46,7 @@ public class PreparationView extends JPanel {
 		panel.setLayout(gbl_panel);
 		
 		GridBagConstraints gbc_lblDinnerMenuPreparation = new GridBagConstraints();
-		gbc_lblDinnerMenuPreparation.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblDinnerMenuPreparation.anchor = GridBagConstraints.NORTH;
 		gbc_lblDinnerMenuPreparation.insets = new Insets(0, 0, 5, 0);
 		gbc_lblDinnerMenuPreparation.gridx = 0;
 		gbc_lblDinnerMenuPreparation.gridy = 0;
