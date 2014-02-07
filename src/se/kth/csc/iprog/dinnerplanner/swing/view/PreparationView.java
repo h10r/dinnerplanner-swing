@@ -3,6 +3,7 @@ package se.kth.csc.iprog.dinnerplanner.swing.view;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
@@ -14,6 +15,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
 import java.util.Set;
 
 import javax.swing.JFormattedTextField;
@@ -32,6 +34,9 @@ public class PreparationView extends JPanel {
 	private final JTextArea txtStarterInstructions = new JTextArea();
 	private final JTextArea txtMainInstructions = new JTextArea();
 	private final JTextArea txtDessertInstructions = new JTextArea();
+	private final JScrollPane sp1 = new JScrollPane(txtStarterInstructions);
+	private final JScrollPane sp2 = new JScrollPane(txtMainInstructions);
+	private final JScrollPane sp3 = new JScrollPane(txtDessertInstructions);
 	
 	private DinnerModel modelInstance; 
 	
@@ -68,7 +73,7 @@ public class PreparationView extends JPanel {
 		gbc_txtStarterInstructions.gridx = 0;
 		gbc_txtStarterInstructions.gridy = 3;
 		txtStarterInstructions.setPreferredSize(new Dimension(500, 150));
-		panel.add(txtStarterInstructions, gbc_txtStarterInstructions);
+		panel.add(sp1, gbc_txtStarterInstructions);
 		
 		GridBagConstraints gbc_lblMainName = new GridBagConstraints();
 		gbc_lblMainName.insets = new Insets(0, 0, 5, 0);
@@ -83,7 +88,7 @@ public class PreparationView extends JPanel {
 		gbc_txtMainInstructions.gridx = 0;
 		gbc_txtMainInstructions.gridy = 7;
 		txtMainInstructions.setPreferredSize(new Dimension(500, 150));
-		panel.add(txtMainInstructions, gbc_txtMainInstructions);
+		panel.add(sp2, gbc_txtMainInstructions);
 		
 		GridBagConstraints gbc_lblDessertName = new GridBagConstraints();
 		gbc_lblDessertName.insets = new Insets(0, 0, 5, 0);
@@ -98,7 +103,7 @@ public class PreparationView extends JPanel {
 		gbc_txtDessertInstructions.gridx = 0;
 		gbc_txtDessertInstructions.gridy = 11;
 		txtDessertInstructions.setPreferredSize(new Dimension(500, 150));
-		panel.add(txtDessertInstructions, gbc_txtDessertInstructions);
+		panel.add(sp3, gbc_txtDessertInstructions);
 				
 		
 		Dish starterDish = this.modelInstance.getSelectedDish(1);
@@ -112,6 +117,15 @@ public class PreparationView extends JPanel {
 		Dish dessertDish = this.modelInstance.getSelectedDish(3);
 		lblDessertName.setText( dessertDish.getName() );
 		txtDessertInstructions.setText( dessertDish.getDescription() );
+		
+		txtStarterInstructions.setLineWrap(true);
+		txtStarterInstructions.setWrapStyleWord(true);
+		
+		txtMainInstructions.setLineWrap(true);
+		txtMainInstructions.setWrapStyleWord(true);
+		
+		txtDessertInstructions.setLineWrap(true);
+		txtDessertInstructions.setWrapStyleWord(true);
 	}
 }
 
