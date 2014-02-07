@@ -38,7 +38,7 @@ public class DishView extends JPanel {
 	private final JTable table = new JTable();
 		
 	public DishView(DinnerModel modelInstance, String dishName){
-		Dish selectedDish = modelInstance.getSelectedDishByName(dishName);
+		Dish selectedDish = modelInstance.getDishByName(dishName);
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
