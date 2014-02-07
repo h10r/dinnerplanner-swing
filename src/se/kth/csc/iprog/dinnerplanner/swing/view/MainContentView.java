@@ -74,8 +74,6 @@ public class MainContentView extends JPanel {
 		gbc_starterContentPanel.fill = GridBagConstraints.BOTH;
 		gbc_starterContentPanel.gridx = 0;
 		gbc_starterContentPanel.gridy = 1;
-		// starterPanel.add(starterContentPanel, gbc_starterContentPanel);
-		this.setUpScrollPanes(starterPanel, starterContentPanel);
 		txtStarterSearchBar.setText("Search");
 		txtStarterSearchBar.setColumns(10);
 		starterPanel.add(txtStarterSearchBar, BorderLayout.NORTH);
@@ -95,28 +93,24 @@ public class MainContentView extends JPanel {
 		txtDesertSearchBar.setColumns(10);
 		desertPanel.add(desertContentPanel, BorderLayout.CENTER);
 		this.setUpScrollPanes(desertPanel, desertContentPanel);
-
-		// Setup the rest of the view layout
-
-		this.setupInlinePanels(starterContentPanel, 1);
 		this.setupInlinePanels(mainContentPanel, 2);
 		this.setupInlinePanels(desertContentPanel, 3);
 
 		this.addTextChangeListenerForSearchBar(txtStarterSearchBar, 1);
+		// starterPanel.add(starterContentPanel, gbc_starterContentPanel);
+		this.setUpScrollPanes(starterPanel, starterContentPanel);
+		
+				// Setup the rest of the view layout
+		
+				this.setupInlinePanels(starterContentPanel, 1);
 		this.addTextChangeListenerForSearchBar(txtMainSearchBar, 2);
 		this.addTextChangeListenerForSearchBar(txtDesertSearchBar, 3);
 	}
 
 	public void setUpScrollPanes(JComponent parentComponent,
 			JComponent currentComponent) {
-		JScrollPane scrollFrame = new JScrollPane(currentComponent);
+		starterPanel.add(starterContentPanel, BorderLayout.SOUTH);
 		currentComponent.setAutoscrolls(true);
-		// scrollFrame.setPreferredSize(new Dimension( 550,660 ));
-		// scrollFrame.setHorizontalScrollBarPolicy(
-		// ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );
-		scrollFrame
-				.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		parentComponent.add(scrollFrame);
 	}
 
 	public void setupInlinePanels(JComponent currentComponent, int typeOfDish) {
