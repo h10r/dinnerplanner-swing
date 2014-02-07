@@ -115,10 +115,22 @@ public class MainSidebarView extends JPanel {
 		gbc_btnIngredients.gridy = 7;
 		add(btnIngredients, gbc_btnIngredients);
 
+		this.onChangeOfComboBoxActionListener( comboBox );
+		
 		this.onClickOfButtonOpenViewActionListener( btnPreparation, new PreparationView( modelInstance ), "Diner Planer - Preparation" );
 		this.onClickOfButtonOpenViewActionListener( btnIngredients, new IngredientView( modelInstance ), "Diner Planer - Ingredient" );
 	}
 
+	void onChangeOfComboBoxActionListener( JComboBox box ) {
+		box.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int selectedIndex = ((JComboBox)e.getSource()).getSelectedIndex() + 1;
+				modelInstance.setNumberOfGuests( selectedIndex );
+			}
+		});
+	}
+	
 	void onClickOfButtonOpenViewActionListener( JButton btn, JPanel newView, String viewTitle ) {
 		final String viewTitleForActionListener = viewTitle;
 		final JPanel newViewForActionListener = newView;
