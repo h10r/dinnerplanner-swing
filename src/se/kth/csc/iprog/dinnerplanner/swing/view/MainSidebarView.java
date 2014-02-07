@@ -117,8 +117,8 @@ public class MainSidebarView extends JPanel {
 
 		this.onChangeOfComboBoxActionListener( comboBox );
 		
-		this.onClickOfButtonOpenViewActionListener( btnPreparation, new PreparationView( modelInstance ), "Diner Planer - Preparation" );
-		this.onClickOfButtonOpenViewActionListener( btnIngredients, new IngredientView( modelInstance ), "Diner Planer - Ingredient" );
+		this.onClickOfButtonOpenPreparationViewActionListener( btnPreparation );
+		this.onClickOfButtonOpenIngredientViewActionListener( btnIngredients );
 	}
 
 	void onChangeOfComboBoxActionListener( JComboBox box ) {
@@ -131,6 +131,24 @@ public class MainSidebarView extends JPanel {
 		});
 	}
 	
+	void onClickOfButtonOpenIngredientViewActionListener( JButton btn ) {
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controllerInstance.openView( new IngredientView( modelInstance ), "Diner Planer - Ingredient"  );
+			}
+		});
+	}
+	
+	void onClickOfButtonOpenPreparationViewActionListener( JButton btn ) {
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controllerInstance.openView( new PreparationView( modelInstance ), "Diner Planer - Preparation"  );
+			}
+		});
+	}
+		
 	void onClickOfButtonOpenViewActionListener( JButton btn, JPanel newView, String viewTitle ) {
 		final String viewTitleForActionListener = viewTitle;
 		final JPanel newViewForActionListener = newView;
