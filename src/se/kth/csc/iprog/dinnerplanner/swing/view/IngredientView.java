@@ -32,7 +32,9 @@ public class IngredientView extends JPanel {
 		add(topPane, BorderLayout.NORTH);
 		topPane.setLayout(new BorderLayout(10, 10));
 		
-		JLabel lblListOfIngredients = new JLabel("Shopping List");
+		System.out.println(modelInstance.getNumberOfGuests());
+		
+		JLabel lblListOfIngredients = new JLabel("Shopping List for " + modelInstance.getNumberOfGuests() + " guests");
 		lblListOfIngredients.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		topPane.add(lblListOfIngredients, BorderLayout.NORTH);
 				

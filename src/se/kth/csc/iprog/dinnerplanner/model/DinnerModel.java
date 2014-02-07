@@ -128,6 +128,8 @@ public class DinnerModel implements IDinnerModel {
 				
 		fullMenu.add(dish1); // !!! just added that for testing
 		fullMenu.add(dish2); // !!! just added that for testing
+		fullMenu.add(dish3); // !!! just added that for testing
+
 	}
 	
 	/**
@@ -250,6 +252,8 @@ public class DinnerModel implements IDinnerModel {
 		
 		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
 		Object[][] ingredientsData = new Object[100][3];
+		
+		System.out.println(this.getNumberOfGuests());
 		
 		// iterate through whole menu
 		int i = 0;
