@@ -148,16 +148,4 @@ public class MainSidebarView extends JPanel {
 			}
 		});
 	}
-		
-	void onClickOfButtonOpenViewActionListener( JButton btn, JPanel newView, String viewTitle ) {
-		final String viewTitleForActionListener = viewTitle;
-		final JPanel newViewForActionListener = newView;
-		
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controllerInstance.openView( newViewForActionListener, viewTitleForActionListener  );
-			}
-		});
-	}	
 }
