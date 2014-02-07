@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 public class DinnerModel implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
-	int numberOfGuests;
+	int numberOfGuests = 4; // default number of guests is 4 (corresponds to dropdown)
 	int clickedDish = 3;
 	
 	Set<Dish> fullMenu = new HashSet<Dish>();
@@ -253,7 +253,7 @@ public class DinnerModel implements IDinnerModel {
 		String[] colTitles = new String[] {"Ingredients", "Quantity", "Cost"};
 		Object[][] ingredientsData = new Object[100][3];
 		
-		System.out.println(this.getNumberOfGuests());
+		//System.out.println(this.getNumberOfGuests());
 		
 		// iterate through whole menu
 		int i = 0;
@@ -261,8 +261,12 @@ public class DinnerModel implements IDinnerModel {
 			for(Ingredient ingredient : dish.getIngredients() ) {
 				//System.out.println(ingredient.getName());
 				ingredientsData[i][0] = ingredient.getName();
-				ingredientsData[i][1] = ingredient.getQuantity() + " " + ingredient.getUnit();
-				ingredientsData[i][2] = "$" + ingredient.getPrice();
+				if(this.getNumberOfGuests() > 1) {
+					ingredientsData[i][1] = Math.round(ingredient.getQuantity() * this.getNumberOfGuests() * 100.0) / 100.0 + " " + ingredient.getUnit();
+				} else {
+					ingredientsData[i][1] = ingredient.getQuantity() + " " + ingredient.getUnit();
+				}
+				ingredientsData[i][2] = "$" + ingredient.getPrice() * this.getNumberOfGuests();
 				//allIngredients.add(ingredient);
 				i++;
 			}
