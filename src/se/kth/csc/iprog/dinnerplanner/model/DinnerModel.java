@@ -130,6 +130,7 @@ public class DinnerModel implements IDinnerModel {
 		
 		selectedDished.add(dish1); // !!! just added that for testing
 		selectedDished.add(dish2); // !!! just added that for testing
+		selectedDished.add(dish3); // !!! just added that for testing
 	}
 	
 	/**
