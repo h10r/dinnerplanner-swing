@@ -43,18 +43,8 @@ public class MainContentView extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-	private final JPanel desertPanel = new JPanel();
-	private final JTextField txtDesertSearchBar = new JTextField();
-	private final JPanel desertContentPanel = new JPanel();
-	private final JPanel mainPanel = new JPanel();
-	private final JTextField txtMainSearchBar = new JTextField();
-	private final JPanel mainContentPanel = new JPanel();
-	private final JPanel starterPanel = new JPanel();
 
 	private DinnerModel modelInstance;
-	private final JTextField txtStarterSearchBar = new JTextField();
-	private final JPanel starterContentPanel = new JPanel();
-
 	private MainView controllerInstance;
 
 	public MainContentView(DinnerModel modelInstance,
@@ -66,104 +56,16 @@ public class MainContentView extends JPanel {
 		setLayout(new BorderLayout(0, 0));
 
 		add(tabbedPane, BorderLayout.WEST);
-		starterPanel.setPreferredSize(new Dimension(200, 1000));
-		tabbedPane.addTab("Starter", null, starterPanel, null);
-		starterPanel.setLayout(new BorderLayout(0, 0));
-
-		GridBagConstraints gbc_starterContentPanel = new GridBagConstraints();
-		gbc_starterContentPanel.fill = GridBagConstraints.BOTH;
-		gbc_starterContentPanel.gridx = 0;
-		gbc_starterContentPanel.gridy = 1;
-		txtStarterSearchBar.setText("Search");
-		txtStarterSearchBar.setColumns(10);
-		starterPanel.add(txtStarterSearchBar, BorderLayout.NORTH);
-
-		tabbedPane.addTab("Main", null, mainPanel, null);
-		mainPanel.setLayout(new BorderLayout(0, 0));
-		txtMainSearchBar.setText("Search dish...");
-		txtMainSearchBar.setColumns(10);
-		mainPanel.add(txtMainSearchBar, BorderLayout.NORTH);
-		mainPanel.add(mainContentPanel);
-		this.setUpScrollPanes(mainPanel, mainContentPanel);
-
-		tabbedPane.addTab("Desert", null, desertPanel, null);
-		desertPanel.setLayout(new BorderLayout(0, 0));
-		desertPanel.add(txtDesertSearchBar, BorderLayout.NORTH);
-		txtDesertSearchBar.setText("Search dish...");
-		txtDesertSearchBar.setColumns(10);
-		desertPanel.add(desertContentPanel, BorderLayout.CENTER);
-		this.setUpScrollPanes(desertPanel, desertContentPanel);
-		this.setupInlinePanels(mainContentPanel, 2);
-		this.setupInlinePanels(desertContentPanel, 3);
-
-		this.addTextChangeListenerForSearchBar(txtStarterSearchBar, 1);
-		// starterPanel.add(starterContentPanel, gbc_starterContentPanel);
-		this.setUpScrollPanes(starterPanel, starterContentPanel);
 		
-				// Setup the rest of the view layout
+		tabbedPane.setPreferredSize( new Dimension(600,400) );
 		
-				this.setupInlinePanels(starterContentPanel, 1);
-		this.addTextChangeListenerForSearchBar(txtMainSearchBar, 2);
-		this.addTextChangeListenerForSearchBar(txtDesertSearchBar, 3);
-	}
-
-	public void setUpScrollPanes(JComponent parentComponent,
-			JComponent currentComponent) {
-		starterPanel.add(starterContentPanel, BorderLayout.SOUTH);
-		currentComponent.setAutoscrolls(true);
-	}
-
-	public void setupInlinePanels(JComponent currentComponent, int typeOfDish) {
-
-		Set<Dish> dishes = this.modelInstance.getDishes();
-
-		for (Dish d : dishes) {
-			if (d.getType() == typeOfDish) {
-				try {
-					JLabel newDish = d.getImageIcon();
-
-					newDish.setText(d.getName());
-					newDish.setFont(new Font("Dialog", Font.BOLD, 16));
-
-					this.addMouseListenerForDish(newDish);
-
-					currentComponent.add(newDish);
-				} catch (IOException e) {
-					System.err.println(e);
-				}
-			}
-		}
-	}
-
-	void addTextChangeListenerForSearchBar(JTextField textField, int typeOfDish) {
-
-		final int typeOfDishForKeyListener = typeOfDish;
+		MainContentPanelView starterTab = new MainContentPanelView( this.modelInstance, this.controllerInstance);
+		MainContentPanelView mainTab = new MainContentPanelView( this.modelInstance, this.controllerInstance);
+		MainContentPanelView dessertTab = new MainContentPanelView( this.modelInstance, this.controllerInstance);
 		
-		textField.addKeyListener( new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent evt) {
-				String searchTerm = ((JTextField)evt.getSource()).getText();
-				modelInstance.filterDishesOfType( typeOfDishForKeyListener, searchTerm );
-			}
-
-			@Override
-			public void keyPressed(KeyEvent evt) {
-			    // TODO Auto-generated method stub
-			}
-		});
+		tabbedPane.addTab("Starter", starterTab);
+		tabbedPane.addTab("Main", mainTab);
+		tabbedPane.addTab("Dessert", dessertTab);
 	}
-
-	void addMouseListenerForDish(JLabel lbl) {
-		lbl.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				controllerInstance.openView(new DishView(modelInstance,
-						((JLabel) evt.getSource()).getText()),
-						"Diner Planer - Dish");
-			}
-		});
-	}
+	
 }
