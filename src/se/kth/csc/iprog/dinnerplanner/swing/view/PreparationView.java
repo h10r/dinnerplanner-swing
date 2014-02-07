@@ -8,85 +8,106 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import javax.swing.JTextArea;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import java.awt.Font;
+import java.awt.Dimension;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextPane;
 
 
 
 public class PreparationView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
+	private final JPanel panel = new JPanel();
+	private final JLabel lblDinnerMenuPreparation = new JLabel("Diner menu preparation");
+	private final JLabel lblStarterName = new JLabel("Starter: $Dishname");
+	private final JLabel lblMainName = new JLabel("Main: $Dishname");
+	private final JLabel lblDessertName = new JLabel("Dessert: $Dishname");
+	private final JTextArea txtStarterInstructions = new JTextArea();
+	private final JTextArea txtMainInstructions = new JTextArea();
+	private final JTextArea txtDessertInstructions = new JTextArea();
 	
-	// The components of our view
-	JLabel lblDinnerMenuPreparation = new JLabel();
-	private final JLabel lblStarter = new JLabel("Starter:");
-	private final JLabel lblMain = new JLabel("Main:");
-	private final JLabel lblDessert = new JLabel("Dessert:");
-	private final JTextArea txtMainRecipe = new JTextArea();
-	private final JTextArea txtDessertRecipe = new JTextArea();
-	private final JLabel LblStarterName = new JLabel("lblStarterName");
-	private final JLabel LblMainName = new JLabel("lblMainName");
-	private final JLabel LblDessertName = new JLabel("lblDessertName");
+	private DinnerModel modelInstance; 
 	
 	public PreparationView(DinnerModel modelInstance){
+		setPreferredSize(new Dimension(550, 600));
 		
-		int dishNumber = modelInstance.getClickedDish();
-		Dish selectedDish = modelInstance.getSelectedDish(dishNumber);
-		setLayout(null);
-		lblDinnerMenuPreparation.setBounds(11, 6, 119, 14);
-
-		lblDinnerMenuPreparation.setText("Dinner Menu Preparation");
+		this.modelInstance = modelInstance;
 		
-		// Add label to the view
-		this.add(lblDinnerMenuPreparation);
-		lblStarter.setBounds(11, 34, 38, 14);
+		add(panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{61, 0};
+		gbl_panel.rowHeights = new int[]{68, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		add(lblStarter);
-		LblStarterName.setBounds(61, 34, 90, 14);
+		GridBagConstraints gbc_lblDinnerMenuPreparation = new GridBagConstraints();
+		gbc_lblDinnerMenuPreparation.anchor = GridBagConstraints.NORTHWEST;
+		gbc_lblDinnerMenuPreparation.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDinnerMenuPreparation.gridx = 0;
+		gbc_lblDinnerMenuPreparation.gridy = 0;
+		lblDinnerMenuPreparation.setFont(new Font("Lucida Grande", Font.BOLD, 20));
+		panel.add(lblDinnerMenuPreparation, gbc_lblDinnerMenuPreparation);
+		GridBagConstraints gbc_lblStarterName = new GridBagConstraints();
+		gbc_lblStarterName.insets = new Insets(0, 0, 5, 0);
+		gbc_lblStarterName.gridx = 0;
+		gbc_lblStarterName.gridy = 2;
+		lblStarterName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		panel.add(lblStarterName, gbc_lblStarterName);
 		
-		add(LblStarterName);
-		lblMain.setBounds(20, 153, 26, 14);
+		GridBagConstraints gbc_txtStarterInstructions = new GridBagConstraints();
+		gbc_txtStarterInstructions.insets = new Insets(0, 0, 5, 0);
+		gbc_txtStarterInstructions.fill = GridBagConstraints.BOTH;
+		gbc_txtStarterInstructions.gridx = 0;
+		gbc_txtStarterInstructions.gridy = 3;
+		txtStarterInstructions.setPreferredSize(new Dimension(500, 150));
+		panel.add(txtStarterInstructions, gbc_txtStarterInstructions);
 		
-		add(lblMain);
-		LblMainName.setBounds(61, 153, 90, 14);
+		GridBagConstraints gbc_lblMainName = new GridBagConstraints();
+		gbc_lblMainName.insets = new Insets(0, 0, 5, 0);
+		gbc_lblMainName.gridx = 0;
+		gbc_lblMainName.gridy = 6;
+		lblMainName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		panel.add(lblMainName, gbc_lblMainName);
 		
-		add(LblMainName);
-		lblDessert.setBounds(15, 274, 41, 14);
+		GridBagConstraints gbc_txtMainInstructions = new GridBagConstraints();
+		gbc_txtMainInstructions.insets = new Insets(0, 0, 5, 0);
+		gbc_txtMainInstructions.fill = GridBagConstraints.BOTH;
+		gbc_txtMainInstructions.gridx = 0;
+		gbc_txtMainInstructions.gridy = 7;
+		txtMainInstructions.setPreferredSize(new Dimension(500, 150));
+		panel.add(txtMainInstructions, gbc_txtMainInstructions);
 		
-		add(lblDessert);
+		GridBagConstraints gbc_lblDessertName = new GridBagConstraints();
+		gbc_lblDessertName.insets = new Insets(0, 0, 5, 0);
+		gbc_lblDessertName.gridx = 0;
+		gbc_lblDessertName.gridy = 10;
+		lblDessertName.setFont(new Font("Lucida Grande", Font.BOLD, 16));
+		panel.add(lblDessertName, gbc_lblDessertName);
 		
+		GridBagConstraints gbc_txtDessertInstructions = new GridBagConstraints();
+		gbc_txtDessertInstructions.insets = new Insets(0, 0, 5, 0);
+		gbc_txtDessertInstructions.fill = GridBagConstraints.BOTH;
+		gbc_txtDessertInstructions.gridx = 0;
+		gbc_txtDessertInstructions.gridy = 11;
+		txtDessertInstructions.setPreferredSize(new Dimension(500, 150));
+		panel.add(txtDessertInstructions, gbc_txtDessertInstructions);
+				
+		Dish starterDish = this.modelInstance.getSelectedDish(1);
+		lblStarterName.setText( starterDish.getName() );
+		txtStarterInstructions.setText( starterDish.getDescription() );
 		
+		Dish mainDish = this.modelInstance.getSelectedDish(2);
+		lblMainName.setText( mainDish.getName() );
+		txtMainInstructions.setText( mainDish.getDescription() );
 		
-		JTextArea txtStarterRecipe = new JTextArea();
-		txtStarterRecipe.setBounds(11, 54, 140, 76);
-		txtStarterRecipe.setEditable(false);
-		add(txtStarterRecipe);
-		txtMainRecipe.setBounds(11, 175, 140, 76);
-		txtMainRecipe.setEditable(false);
-		
-		add(txtMainRecipe);
-		LblDessertName.setBounds(61, 274, 90, 14);
-		
-		add(LblDessertName);
-		txtDessertRecipe.setBounds(11, 297, 140, 76);
-		txtDessertRecipe.setEditable(false);
-		
-		add(txtDessertRecipe);
-		
-		
-		// Get Dish Specific Data
-		
-		if(selectedDish.getType()==1){
-			LblStarterName.setText(selectedDish.getName());
-			txtStarterRecipe.setText(selectedDish.getDescription());
-			}
-		else if (selectedDish.getType()==2){
-			LblMainName.setText(selectedDish.getName());
-			txtMainRecipe.setText(selectedDish.getDescription());
-			}
-		else if (selectedDish.getType()==3){
-			LblDessertName.setText(selectedDish.getName());
-			txtDessertRecipe.setText(selectedDish.getDescription());
-			}
-		
+		Dish dessertDish = this.modelInstance.getSelectedDish(3);
+		lblDessertName.setText( dessertDish.getName() );
+		txtDessertInstructions.setText( dessertDish.getDescription() );
 	}
 }
 
