@@ -12,8 +12,6 @@ import se.kth.csc.iprog.dinnerplanner.swing.view.*;
 public class DinnerPlanner extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-
-	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	public DinnerPlanner() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,24 +26,7 @@ public class DinnerPlanner extends JFrame {
 	public void setModel(DinnerModel model) {
 		this.model = model;
 	}
-	
-	// Methods
-    public void attach(Observer observer) {
-       this.observers.add(observer);
-    }
-    
-    public void detach(Observer observer) {
-    	this.observers.remove(observer);
-    }
-    
-    public void notifyObservers() {
-    	/*
-       for (Observer o : this.observers) {  
-          o.update();
-       }
-       */
-    }
-    
+	    
     public void renderView( JPanel newView ) {
     	this.getContentPane().add( newView );
     }
