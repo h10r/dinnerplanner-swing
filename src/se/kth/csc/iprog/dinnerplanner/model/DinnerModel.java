@@ -2,11 +2,12 @@ package se.kth.csc.iprog.dinnerplanner.model;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Observable;
 import java.util.Set;
 
 import javax.swing.table.DefaultTableModel;
 
-public class DinnerModel implements IDinnerModel {
+public class DinnerModel extends Observable implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
 	int numberOfGuests = 4; // default number of guests is 4 (corresponds to dropdown)
@@ -73,7 +74,7 @@ public class DinnerModel implements IDinnerModel {
 		dish3.addIngredient(dish3ing5);
 		dishes.add(dish3);
 
-		Dish dish4 = new Dish("Ice Cream",Dish.DESERT,"icecream.jpg","Make sure that you have plenty of room spare in the freezer. First, separate the eggs, placing the yolks in a large bowl. (You will not need the whites for this recipe. You can use them to make meringues.)    Add the sugar to the egg yolks and whisk until pale and thick.    Add the cornflour (if using) and whisk well to incorporate into the egg yolks.    Put the cream and milk into a medium saucepan.    Cut the vanilla pod open lengthways and scrape out the seeds with the back of a knife, then add to the cream and milk.    Heat the cream and milk until just below boiling. Slowly pour the hot cream and milk onto the eggs and sugar, whisking as you go.    Sieve the custard into a clean pan, and set it over a very low heat. Stir the custard constantly with a wooden spoon, paying special attention to the corners of the pan, until it is steaming and has thickened slightly. The custard is ready when you can draw a clear line through it on the back of the wooden spoon. This can take up to 10 minutes.    Tip the custard into a large, shallow, freezer-proof container, and allow to cool to room temperature (you can speed this up by sitting the tub of custard in a large bowl of iced water).    Once at room temperature, place a lid on the custard and chill in the fridge overnight.    Once chilled, transfer the custard to the freezer and take it out every hour, for three hours, to whisk it with an electric handheld whisk. This will disperse the ice crystals and keep it smooth.    Then leave the ice-cream in the freezer for a final freeze, until it is solid.    Remove the ice cream from the freezer 10 minutes before serving, so that it’s easy to scoop.");
+		Dish dish4 = new Dish("Ice Cream",Dish.DESERT,"icecream.jpg","Make sure that you have plenty of room spare in the freezer. First, separate the eggs, placing the yolks in a large bowl. (You will not need the whites for this recipe. You can use them to make meringues.)    Add the sugar to the egg yolks and whisk until pale and thick.    Add the cornflour (if using) and whisk well to incorporate into the egg yolks.    Put the cream and milk into a medium saucepan.    Cut the vanilla pod open lengthways and scrape out the seeds with the back of a knife, then add to the cream and milk.    Heat the cream and milk until just below boiling. Slowly pour the hot cream and milk onto the eggs and sugar, whisking as you go.    Sieve the custard into a clean pan, and set it over a very low heat. Stir the custard constantly with a wooden spoon, paying special attention to the corners of the pan, until it is steaming and has thickened slightly. The custard is ready when you can draw a clear line through it on the back of the wooden spoon. This can take up to 10 minutes.    Tip the custard into a large, shallow, freezer-proof container, and allow to cool to room temperature (you can speed this up by sitting the tub of custard in a large bowl of iced water).    Once at room temperature, place a lid on the custard and chill in the fridge overnight.    Once chilled, transfer the custard to the freezer and take it out every hour, for three hours, to whisk it with an electric handheld whisk. This will disperse the ice crystals and keep it smooth.    Then leave the ice-cream in the freezer for a final freeze, until it is solid.    Remove the ice cream from the freezer 10 minutes before serving, so that itï¿½s easy to scoop.");
 		Ingredient dish4ing1 = new Ingredient("egg yolks",4,"",2);
 		Ingredient dish4ing2 = new Ingredient("vanilla pod",1,"",6);
 		Ingredient dish4ing3 = new Ingredient("milk",300,"ml",1);
@@ -87,7 +88,7 @@ public class DinnerModel implements IDinnerModel {
 		dishes.add(dish4);
 		
 		
-		Dish dish5 = new Dish("Baked Brie",Dish.MAIN,"bakedbrie.jpg"," Preheat oven to 350 degrees F. If you want, start with chilled brie and use a sharp knife to carefully cut off the thin top rind of the cheese. This may help the crust stay with the cheese when served. The rind is edible so you don't have to do this step if you don't want to. On a stick-free cookie sheet, lay out the puff pastry or the crescent rolls flat; put the brie round or wedge on top. Spread jam on brie, fold dough over top, cutting off excess dough. Drizzle maple syrup and place a handful of brown sugar on top. Bake at 350º for 25-30 minutes, pastry should be golden brown. Let cool for 10 minutes before serving. Serve with crackers and apple slices.");
+		Dish dish5 = new Dish("Baked Brie",Dish.MAIN,"bakedbrie.jpg"," Preheat oven to 350 degrees F. If you want, start with chilled brie and use a sharp knife to carefully cut off the thin top rind of the cheese. This may help the crust stay with the cheese when served. The rind is edible so you don't have to do this step if you don't want to. On a stick-free cookie sheet, lay out the puff pastry or the crescent rolls flat; put the brie round or wedge on top. Spread jam on brie, fold dough over top, cutting off excess dough. Drizzle maple syrup and place a handful of brown sugar on top. Bake at 350ï¿½ for 25-30 minutes, pastry should be golden brown. Let cool for 10 minutes before serving. Serve with crackers and apple slices.");
 		Ingredient dish5ing1 = new Ingredient("maple syrup",4,"cup",2);
 		Ingredient dish5ing2 = new Ingredient("pastry dough",1,"cup",6);
 		Ingredient dish5ing3 = new Ingredient("brie cheese",300,"g",1);
@@ -172,6 +173,9 @@ public class DinnerModel implements IDinnerModel {
 	
 	public void setNumberOfGuests(int numberOfGuests) {
 		this.numberOfGuests = numberOfGuests;
+		
+		setChanged();
+        notifyObservers();
 	}
 	
 	/**
@@ -284,5 +288,8 @@ public class DinnerModel implements IDinnerModel {
 	
 	public void setClickedDish(int selection){
 		clickedDish = selection;
+		
+		setChanged();
+        notifyObservers();
 	}
 }
