@@ -10,8 +10,11 @@ import javax.swing.table.DefaultTableModel;
 public class DinnerModel extends Observable implements IDinnerModel {
 	
 	Set<Dish> dishes = new HashSet<Dish>();
-	int numberOfGuests = 4; // default number of guests is 4 (corresponds to dropdown)
+	int numberOfGuests = 0; 
+
 	int clickedDish = 3;
+	
+	int costPerGuest = 100;
 	
 	Set<Dish> fullMenu = new HashSet<Dish>();
 	Set<Ingredient> allIngredients = new HashSet<Ingredient>();
@@ -172,6 +175,10 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	}
 	
 	public void setNumberOfGuests(int numberOfGuests) {
+		if ( numberOfGuests <= 1 || numberOfGuests > 10 ) {
+			return;
+		}
+		
 		this.numberOfGuests = numberOfGuests;
 		
 		setChanged();
@@ -217,7 +224,9 @@ public class DinnerModel extends Observable implements IDinnerModel {
 	 * Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	 */
 	public float getTotalMenuPrice() {
-		float totalPrice = -1.0f;
+		// TODO: After Drag'n'drop is implemented
+		//float totalPrice = -1.0f;
+		float totalPrice = 66.0f;
 		
 		for(Dish d : this.getFullMenu() ){		
 			for(Ingredient i : d.getIngredients() ) {
@@ -225,7 +234,7 @@ public class DinnerModel extends Observable implements IDinnerModel {
 			}
 		}
 		
-		return totalPrice;
+		return this.getNumberOfGuests() * totalPrice;
 	}
 	
 	public DefaultTableModel getDishTableModel(String name){

@@ -38,6 +38,10 @@ public class MainSidebarView extends JPanel implements Observer {
 	
 	public JButton btnPreparation;
 	public JButton btnIngredients;
+	public JButton btnMinus;
+	public JButton btnPlus;
+	public JComboBox comboBox;
+	public JLabel lblTotalCost;
 
 	public MainSidebarView(DinnerModel modelInstance, MainView parent) {
 		
@@ -65,30 +69,29 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblNumberOfPeople.gridy = 0;
 		add(lblNumberOfPeople, gbc_lblNumberOfPeople);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2",
+		this.comboBox = new JComboBox();
+		this.comboBox.setModel(new DefaultComboBoxModel(new String[] { "1", "2",
 				"3", "4", "5", "6", "7", "8", "9", "10" }));
-		comboBox.setSelectedIndex(3);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.anchor = GridBagConstraints.NORTHWEST;
 		gbc_comboBox.gridx = 2;
 		gbc_comboBox.gridy = 0;
-		add(comboBox, gbc_comboBox);
+		add(this.comboBox, gbc_comboBox);
 		
-		JButton button = new JButton("-");
-		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.insets = new Insets(0, 0, 5, 5);
-		gbc_button.gridx = 1;
-		gbc_button.gridy = 1;
-		add(button, gbc_button);
+		this.btnMinus = new JButton("-");
+		GridBagConstraints gbc_btnMinus = new GridBagConstraints();
+		gbc_btnMinus.insets = new Insets(0, 0, 5, 5);
+		gbc_btnMinus.gridx = 1;
+		gbc_btnMinus.gridy = 1;
+		add(this.btnMinus, gbc_btnMinus);
 		
-		JButton button_1 = new JButton("+");
-		GridBagConstraints gbc_button_1 = new GridBagConstraints();
-		gbc_button_1.insets = new Insets(0, 0, 5, 5);
-		gbc_button_1.gridx = 2;
-		gbc_button_1.gridy = 1;
-		add(button_1, gbc_button_1);
+		this.btnPlus = new JButton("+");
+		GridBagConstraints gbc_btnPlus = new GridBagConstraints();
+		gbc_btnPlus.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPlus.gridx = 2;
+		gbc_btnPlus.gridy = 1;
+		add(this.btnPlus, gbc_btnPlus);
 
 		JLabel lblTotalCostDescription = new JLabel("Total costs");
 		lblTotalCostDescription.setHorizontalAlignment(SwingConstants.LEFT);
@@ -99,12 +102,12 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblTotalCostDescription.gridy = 2;
 		add(lblTotalCostDescription, gbc_lblTotalCostDescription);
 
-		JLabel lblTotalCost = new JLabel("SEK 130");
+		this.lblTotalCost = new JLabel("0.00 SEK");
 		GridBagConstraints gbc_lblTotalCost = new GridBagConstraints();
 		gbc_lblTotalCost.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTotalCost.gridx = 2;
 		gbc_lblTotalCost.gridy = 2;
-		add(lblTotalCost, gbc_lblTotalCost);
+		add(this.lblTotalCost, gbc_lblTotalCost);
 
 		JLabel lblDinerMenuLabel = new JLabel("Dinner Menu");
 		GridBagConstraints gbc_lblDinerMenuLabel = new GridBagConstraints();
@@ -138,21 +141,18 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_btnIngredients.gridy = 8;
 		add( this.btnIngredients, gbc_btnIngredients);
 
-		this.onChangeOfComboBoxActionListener( comboBox );
+		
+		this.modelInstance.setNumberOfGuests(4);
+		
 	}
 
-	void onChangeOfComboBoxActionListener( JComboBox box ) {
-		box.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int selectedIndex = ((JComboBox)e.getSource()).getSelectedIndex() + 1;
-				modelInstance.setNumberOfGuests( selectedIndex );
-			}
-		});
-	}
-		
 	@Override
 	public void update(Observable o, Object arg) {
+		System.out.println("update");
+		
+		this.comboBox.setSelectedIndex( this.modelInstance.getNumberOfGuests()-1 );
+		this.lblTotalCost.setText( this.modelInstance.getTotalMenuPrice() + " SEK" );
+		
 		repaint();
 	}
 }

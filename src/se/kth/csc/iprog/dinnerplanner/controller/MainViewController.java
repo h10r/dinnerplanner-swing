@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import com.sun.codemodel.internal.JLabel;
@@ -24,28 +25,36 @@ public class MainViewController extends ViewController {
 		MainView currentView = (MainView) view;
 		
 		currentView.sidebarView.btnPreparation.addActionListener( this );
-		currentView.sidebarView.btnIngredients.addActionListener( this );		
+		currentView.sidebarView.btnIngredients.addActionListener( this );
+		
+		currentView.sidebarView.btnMinus.addActionListener( this );
+		currentView.sidebarView.btnPlus.addActionListener( this );
+		
+		currentView.sidebarView.comboBox.addActionListener( this );
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JButton sourceButton = (JButton) e.getSource();
-		
-		if ( sourceButton.getText() == "Preparation" ) {
-			this.openView( new PreparationView( this.model ), "Diner Planer - Preparation"  );
-		} else if ( sourceButton.getText() == "Ingredients" ) {
-			this.openView( new IngredientView( this.model ), "Diner Planer - Ingredient"  );
+
+		// if event from button
+		if ( e.getSource() instanceof JButton ) {
+			JButton sourceButton = (JButton) e.getSource();
+			
+			if ( sourceButton.getText() == "Preparation" ) {
+				this.openView( new PreparationView( this.model ), "Diner Planer - Preparation"  );
+			} else if ( sourceButton.getText() == "Ingredients" ) {
+				this.openView( new IngredientView( this.model ), "Diner Planer - Ingredient"  );
+			} else if ( sourceButton.getText() == "-" ) {
+				this.model.setNumberOfGuests( model.getNumberOfGuests() - 1 );
+			}  else if ( sourceButton.getText() == "+" ) {
+				this.model.setNumberOfGuests( model.getNumberOfGuests() + 1 );
+			}					
 		}
-				
-		/*
-		if(e.getSource() == view.plusButton) { 
-			controllerInstance.openView( new IngredientView( modelInstance ), "Diner Planer - Ingredient"  );
-		}
-		
-		if(e.getSource() == view.minusButton) {
-			model.setNumberOfGuests(model.getNumberOfGuests() - 1); }
-		}
-		*/
-	}
 	
+		if ( e.getSource() instanceof JComboBox ) {
+			JComboBox sourceComboBox = (JComboBox) e.getSource();
+			int selectedIndex = sourceComboBox.getSelectedIndex() + 1;
+			this.model.setNumberOfGuests( selectedIndex );			
+		}		
+	}
 }
