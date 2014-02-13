@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
@@ -15,15 +17,19 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import java.awt.Font;
+
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
+
 import java.awt.Dimension;
+
 import javax.swing.JScrollPane;
+
 import java.awt.Insets;
 
 
-public class DishView extends JPanel {
+public class DishView extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	BufferedImage dishImage = null;
@@ -36,15 +42,20 @@ public class DishView extends JPanel {
 	private final JTextPane txtInfoPane = new JTextPane();
 	private final JScrollPane ingredientsViewPanel = new JScrollPane();
 	private final JTable table = new JTable();
+	
+	private DinnerModel modelInstance;
+	
+	public DishView(DinnerModel modelInstance, String dishName) {
+		this.modelInstance = modelInstance;
+		this.modelInstance.addObserver(this);
 		
-	public DishView(DinnerModel modelInstance, String dishName){
-		Dish selectedDish = modelInstance.getDishByName(dishName);
+		Dish selectedDish = this.modelInstance.getDishByName(dishName);
 		
 		//get current dish specific data.
 		lblName.setText(selectedDish.getName()); 
 		lblPricePerPerson.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice()+" for "+modelInstance.getNumberOfGuests()+" guests.");
-		modelInstance.getTotalMenuPrice();
+		lblPricePerPerson.setText("$ "+selectedDish.getTotalDishPrice()+" for "+this.modelInstance.getNumberOfGuests()+" guests.");
+		this.modelInstance.getTotalMenuPrice();
 
 		//try to open image file for dish
 		try {
@@ -83,5 +94,10 @@ public class DishView extends JPanel {
 		table.setModel(modelInstance.getDishTableModel(dishName));
 		ingredientsViewPanel.setViewportView(table);	
 	}
+	
+	@Override
+    public void update(Observable o, Object arg) {
+        repaint();
+    }
 	
 }

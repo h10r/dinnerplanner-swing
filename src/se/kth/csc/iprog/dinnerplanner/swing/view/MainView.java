@@ -11,13 +11,20 @@ import se.kth.csc.iprog.dinnerplanner.model.DinnerModel;
 import se.kth.csc.iprog.dinnerplanner.model.Dish;
 
 import java.awt.Dimension;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class MainView extends JPanel {
+public class MainView extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public MainView(DinnerModel modelInstance){
+	private DinnerModel modelInstance;
+	
+	public MainView(DinnerModel modelInstance) {
+		
+		this.modelInstance = modelInstance;
+		this.modelInstance.addObserver(this);
 		
 		MainContentView contentView = new MainContentView( modelInstance, this );
 		contentView.setPreferredSize(new Dimension(600, 16));
@@ -35,5 +42,10 @@ public class MainView extends JPanel {
 	    frame.setSize(800, 600);
 	    frame.pack();
 	    frame.setVisible (true);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
 	}
 }

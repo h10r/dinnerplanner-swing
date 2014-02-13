@@ -16,6 +16,8 @@ import java.awt.Insets;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.ScrollPane;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import javax.swing.JFormattedTextField;
@@ -23,7 +25,7 @@ import javax.swing.JTextPane;
 
 
 
-public class PreparationView extends JPanel {
+public class PreparationView extends JPanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	private final JPanel panel = new JPanel();
@@ -44,6 +46,7 @@ public class PreparationView extends JPanel {
 		setPreferredSize(new Dimension(550, 600));
 		
 		this.modelInstance = modelInstance;
+		this.modelInstance.addObserver(this);
 		
 		add(panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
@@ -126,6 +129,11 @@ public class PreparationView extends JPanel {
 		
 		txtDessertInstructions.setLineWrap(true);
 		txtDessertInstructions.setWrapStyleWord(true);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
 	}
 }
 

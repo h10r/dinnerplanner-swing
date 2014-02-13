@@ -20,6 +20,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import javax.swing.JScrollPane;
@@ -39,7 +41,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
-public class MainContentView extends JPanel {
+public class MainContentView extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 	private final JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -51,17 +53,20 @@ public class MainContentView extends JPanel {
 	private final JPanel mainContentPanel = new JPanel();
 	private final JPanel starterPanel = new JPanel();
 
-	private DinnerModel modelInstance;
 	private final JTextField txtStarterSearchBar = new JTextField();
 	private final JPanel starterContentPanel = new JPanel();
 
 	private MainView controllerInstance;
+	
+	private DinnerModel modelInstance;
 
 	public MainContentView(DinnerModel modelInstance,
 			MainView controllerInstance) {
 
 		this.controllerInstance = controllerInstance;
+
 		this.modelInstance = modelInstance;
+		this.modelInstance.addObserver(this);
 
 		setLayout(new BorderLayout(0, 0));
 
@@ -165,5 +170,10 @@ public class MainContentView extends JPanel {
 						"Diner Planer - Dish");
 			}
 		});
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
 	}
 }

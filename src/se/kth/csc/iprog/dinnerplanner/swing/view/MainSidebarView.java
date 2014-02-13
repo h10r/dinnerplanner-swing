@@ -23,20 +23,26 @@ import javax.swing.SwingConstants;
 import javax.swing.DefaultComboBoxModel;
 
 import java.awt.Dimension;
+import java.util.Observable;
+import java.util.Observer;
 
-public class MainSidebarView extends JPanel {
+@SuppressWarnings("unused")
+public class MainSidebarView extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 1L;
 
 	// The components of our view
 	private MainView controllerInstance;
+	
 	private DinnerModel modelInstance;
 
 	public MainSidebarView(DinnerModel modelInstance, MainView controllerInstance) {
 		
 		this.controllerInstance = controllerInstance;
+		
 		this.modelInstance = modelInstance;
-
+		this.modelInstance.addObserver(this);
+		
 		String[] numberOfPeople = { "1", "2", "3", "4", "5", "6", "7", "8",
 				"9", "10", "11", "12" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -147,5 +153,10 @@ public class MainSidebarView extends JPanel {
 				controllerInstance.openView( new PreparationView( modelInstance ), "Diner Planer - Preparation"  );
 			}
 		});
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		repaint();
 	}
 }
