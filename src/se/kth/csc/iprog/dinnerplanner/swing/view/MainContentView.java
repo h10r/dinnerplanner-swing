@@ -53,16 +53,19 @@ public class MainContentView extends JPanel implements Observer {
 	private final JTextField txtMainSearchBar = new JTextField();
 	private final JPanel mainContentPanel = new JPanel();
 	private final JPanel starterPanel = new JPanel();
-
-	private final JTextField txtStarterSearchBar = new JTextField();
 	private final JPanel starterContentPanel = new JPanel();
 
 	private MainView parent;
 	
 	private DinnerModel modelInstance;
+	private final JPanel starterContentPanel2 = new JPanel();
+	private final JTextField txtStarterSearchBar = new JTextField();
 
 	public MainContentView(DinnerModel modelInstance,
 			MainView parent) {
+		txtStarterSearchBar.setText("Search dish...");
+		txtStarterSearchBar.setToolTipText("");
+		txtStarterSearchBar.setColumns(10);
 
 		this.parent = parent;
 
@@ -75,14 +78,15 @@ public class MainContentView extends JPanel implements Observer {
 		starterPanel.setPreferredSize(new Dimension(200, 1000));
 		tabbedPane.addTab("Starter", null, starterPanel, null);
 		starterPanel.setLayout(new BorderLayout(0, 0));
+		starterPanel.add(starterContentPanel2, BorderLayout.NORTH);
+		starterContentPanel2.setLayout(new BorderLayout(0, 0));
+		
+		starterContentPanel2.add(txtStarterSearchBar, BorderLayout.NORTH);
 
 		GridBagConstraints gbc_starterContentPanel = new GridBagConstraints();
 		gbc_starterContentPanel.fill = GridBagConstraints.BOTH;
 		gbc_starterContentPanel.gridx = 0;
 		gbc_starterContentPanel.gridy = 1;
-		txtStarterSearchBar.setText("Search");
-		txtStarterSearchBar.setColumns(10);
-		starterPanel.add(txtStarterSearchBar, BorderLayout.NORTH);
 
 		tabbedPane.addTab("Main", null, mainPanel, null);
 		mainPanel.setLayout(new BorderLayout(0, 0));
@@ -90,7 +94,6 @@ public class MainContentView extends JPanel implements Observer {
 		txtMainSearchBar.setColumns(10);
 		mainPanel.add(txtMainSearchBar, BorderLayout.NORTH);
 		mainPanel.add(mainContentPanel);
-		this.setUpScrollPanes(mainPanel, mainContentPanel);
 
 		tabbedPane.addTab("Desert", null, desertPanel, null);
 		desertPanel.setLayout(new BorderLayout(0, 0));
@@ -98,26 +101,21 @@ public class MainContentView extends JPanel implements Observer {
 		txtDesertSearchBar.setText("Search dish...");
 		txtDesertSearchBar.setColumns(10);
 		desertPanel.add(desertContentPanel, BorderLayout.CENTER);
-		this.setUpScrollPanes(desertPanel, desertContentPanel);
+
+		this.setupInlinePanels(starterContentPanel2, 1);
 		this.setupInlinePanels(mainContentPanel, 2);
 		this.setupInlinePanels(desertContentPanel, 3);
-
-		this.addTextChangeListenerForSearchBar(txtStarterSearchBar, 1);
-		// starterPanel.add(starterContentPanel, gbc_starterContentPanel);
-		this.setUpScrollPanes(starterPanel, starterContentPanel);
-		
-				// Setup the rest of the view layout
-		
-				this.setupInlinePanels(starterContentPanel, 1);
 		this.addTextChangeListenerForSearchBar(txtMainSearchBar, 2);
 		this.addTextChangeListenerForSearchBar(txtDesertSearchBar, 3);
 	}
 
+	/*
 	public void setUpScrollPanes(JComponent parentComponent,
 			JComponent currentComponent) {
 		starterPanel.add(starterContentPanel, BorderLayout.NORTH);
 		currentComponent.setAutoscrolls(true);
 	}
+	*/
 
 	public void setupInlinePanels(JComponent currentComponent, int typeOfDish) {
 
@@ -144,23 +142,6 @@ public class MainContentView extends JPanel implements Observer {
 	void addTextChangeListenerForSearchBar(JTextField textField, int typeOfDish) {
 
 		final int typeOfDishForKeyListener = typeOfDish;
-		
-		textField.addKeyListener( new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent evt) {
-			}
-
-			@Override
-			public void keyReleased(KeyEvent evt) {
-				String searchTerm = ((JTextField)evt.getSource()).getText();
-				modelInstance.filterDishesOfType( typeOfDishForKeyListener, searchTerm );
-			}
-
-			@Override
-			public void keyPressed(KeyEvent evt) {
-			    // TODO Auto-generated method stub
-			}
-		});
 	}
 
 	void addMouseListenerForDish(JLabel lbl) {
