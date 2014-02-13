@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 import java.util.Observer;
 
+import se.kth.csc.iprog.dinnerplanner.controller.MainViewController;
 import se.kth.csc.iprog.dinnerplanner.model.*;
 import se.kth.csc.iprog.dinnerplanner.swing.view.*;
 
@@ -42,6 +43,9 @@ public class DinnerPlanner extends JFrame {
 		//Creating the first view
 		MainView mainView = new MainView( modelInstance );
 		//DishView dishView = new DishView(modelInstance);
+		
+		// Controllers
+		MainViewController mainViewController = new MainViewController( modelInstance, mainView );
 		
 		//Adding the view to the main JFrame
 		//dinnerPlanner.getContentPane().add(mainView);
