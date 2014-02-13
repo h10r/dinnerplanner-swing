@@ -40,15 +40,6 @@ public class MainView extends JPanel implements Observer {
 		this.add( this.sidebarView, BorderLayout.EAST);
 	}
 	
-	void openView( JPanel newView, String title ) {
-		JFrame frame = new JFrame ( title );
-	    //frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-	    frame.getContentPane().add ( newView );
-	    frame.setSize(800, 600);
-	    frame.pack();
-	    frame.setVisible (true);
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();

@@ -56,14 +56,14 @@ public class MainContentView extends JPanel implements Observer {
 	private final JTextField txtStarterSearchBar = new JTextField();
 	private final JPanel starterContentPanel = new JPanel();
 
-	private MainView controllerInstance;
+	private MainView parent;
 	
 	private DinnerModel modelInstance;
 
 	public MainContentView(DinnerModel modelInstance,
-			MainView controllerInstance) {
+			MainView parent) {
 
-		this.controllerInstance = controllerInstance;
+		this.parent = parent;
 
 		this.modelInstance = modelInstance;
 		this.modelInstance.addObserver(this);
@@ -165,9 +165,11 @@ public class MainContentView extends JPanel implements Observer {
 	void addMouseListenerForDish(JLabel lbl) {
 		lbl.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				controllerInstance.openView(new DishView(modelInstance,
+				/*
+				this.parent.openView(new DishView(modelInstance,
 						((JLabel) evt.getSource()).getText()),
 						"Diner Planer - Dish");
+				*/
 			}
 		});
 	}

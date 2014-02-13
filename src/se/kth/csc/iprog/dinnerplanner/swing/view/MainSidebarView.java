@@ -32,16 +32,16 @@ public class MainSidebarView extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 
 	// The components of our view
-	private MainView controllerInstance;
+	private MainView parent;
 	
 	private DinnerModel modelInstance;
 	
 	public JButton btnPreparation;
 	public JButton btnIngredients;
 
-	public MainSidebarView(DinnerModel modelInstance, MainView controllerInstance) {
+	public MainSidebarView(DinnerModel modelInstance, MainView parent) {
 		
-		this.controllerInstance = controllerInstance;
+		this.parent = parent;
 		
 		this.modelInstance = modelInstance;
 		this.modelInstance.addObserver(this);
@@ -50,10 +50,10 @@ public class MainSidebarView extends JPanel implements Observer {
 				"9", "10", "11", "12" };
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 84, 130, 0, 135, 0 };
-		gridBagLayout.rowHeights = new int[] { 27, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 27, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, Double.MIN_VALUE };
 		setLayout(gridBagLayout);
 
@@ -75,6 +75,20 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_comboBox.gridx = 2;
 		gbc_comboBox.gridy = 0;
 		add(comboBox, gbc_comboBox);
+		
+		JButton button = new JButton("-");
+		GridBagConstraints gbc_button = new GridBagConstraints();
+		gbc_button.insets = new Insets(0, 0, 5, 5);
+		gbc_button.gridx = 1;
+		gbc_button.gridy = 1;
+		add(button, gbc_button);
+		
+		JButton button_1 = new JButton("+");
+		GridBagConstraints gbc_button_1 = new GridBagConstraints();
+		gbc_button_1.insets = new Insets(0, 0, 5, 5);
+		gbc_button_1.gridx = 2;
+		gbc_button_1.gridy = 1;
+		add(button_1, gbc_button_1);
 
 		JLabel lblTotalCostDescription = new JLabel("Total costs");
 		lblTotalCostDescription.setHorizontalAlignment(SwingConstants.LEFT);
@@ -82,14 +96,14 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblTotalCostDescription.anchor = GridBagConstraints.WEST;
 		gbc_lblTotalCostDescription.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTotalCostDescription.gridx = 1;
-		gbc_lblTotalCostDescription.gridy = 1;
+		gbc_lblTotalCostDescription.gridy = 2;
 		add(lblTotalCostDescription, gbc_lblTotalCostDescription);
 
 		JLabel lblTotalCost = new JLabel("SEK 130");
 		GridBagConstraints gbc_lblTotalCost = new GridBagConstraints();
 		gbc_lblTotalCost.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTotalCost.gridx = 2;
-		gbc_lblTotalCost.gridy = 1;
+		gbc_lblTotalCost.gridy = 2;
 		add(lblTotalCost, gbc_lblTotalCost);
 
 		JLabel lblDinerMenuLabel = new JLabel("Dinner Menu");
@@ -97,7 +111,7 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblDinerMenuLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDinerMenuLabel.gridwidth = 2;
 		gbc_lblDinerMenuLabel.gridx = 1;
-		gbc_lblDinerMenuLabel.gridy = 2;
+		gbc_lblDinerMenuLabel.gridy = 3;
 		add(lblDinerMenuLabel, gbc_lblDinerMenuLabel);
 
 		JLabel lblDishDragNDrop = new JLabel("Drag your dish to the menu");
@@ -107,21 +121,21 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblDishDragNDrop.gridwidth = 2;
 		gbc_lblDishDragNDrop.insets = new Insets(0, 0, 5, 5);
 		gbc_lblDishDragNDrop.gridx = 1;
-		gbc_lblDishDragNDrop.gridy = 3;
+		gbc_lblDishDragNDrop.gridy = 4;
 		add(lblDishDragNDrop, gbc_lblDishDragNDrop);
 
 		this.btnPreparation = new JButton("Preparation");
 		GridBagConstraints gbc_btnPreparation = new GridBagConstraints();
 		gbc_btnPreparation.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPreparation.gridx = 1;
-		gbc_btnPreparation.gridy = 7;
+		gbc_btnPreparation.gridy = 8;
 		add( this.btnPreparation, gbc_btnPreparation);
 
 		this.btnIngredients = new JButton("Ingredients");
 		GridBagConstraints gbc_btnIngredients = new GridBagConstraints();
 		gbc_btnIngredients.insets = new Insets(0, 0, 0, 5);
 		gbc_btnIngredients.gridx = 2;
-		gbc_btnIngredients.gridy = 7;
+		gbc_btnIngredients.gridy = 8;
 		add( this.btnIngredients, gbc_btnIngredients);
 
 		this.onChangeOfComboBoxActionListener( comboBox );
@@ -136,25 +150,7 @@ public class MainSidebarView extends JPanel implements Observer {
 			}
 		});
 	}
-	
-	void onClickOfButtonOpenIngredientViewActionListener( JButton btn ) {
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controllerInstance.openView( new IngredientView( modelInstance ), "Diner Planer - Ingredient"  );
-			}
-		});
-	}
-	
-	void onClickOfButtonOpenPreparationViewActionListener( JButton btn ) {
-		btn.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controllerInstance.openView( new PreparationView( modelInstance ), "Diner Planer - Preparation"  );
-			}
-		});
-	}
-	
+		
 	@Override
 	public void update(Observable o, Object arg) {
 		repaint();
