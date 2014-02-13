@@ -1,7 +1,6 @@
 package se.kth.csc.iprog.dinnerplanner.controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
@@ -15,6 +14,8 @@ public class MainViewController extends ViewController {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("Button clicked");
+		
 		/*
 		if(e.getSource() == view.plusButton) { 
 			model.setNumberOfGuests( model.getNumberOfGuests() + 1 );
