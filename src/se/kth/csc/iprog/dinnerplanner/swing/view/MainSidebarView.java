@@ -35,6 +35,9 @@ public class MainSidebarView extends JPanel implements Observer {
 	private MainView controllerInstance;
 	
 	private DinnerModel modelInstance;
+	
+	public JButton btnPreparation;
+	public JButton btnIngredients;
 
 	public MainSidebarView(DinnerModel modelInstance, MainView controllerInstance) {
 		
@@ -107,24 +110,21 @@ public class MainSidebarView extends JPanel implements Observer {
 		gbc_lblDishDragNDrop.gridy = 3;
 		add(lblDishDragNDrop, gbc_lblDishDragNDrop);
 
-		JButton btnPreparation = new JButton("Preparation");
+		this.btnPreparation = new JButton("Preparation");
 		GridBagConstraints gbc_btnPreparation = new GridBagConstraints();
 		gbc_btnPreparation.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPreparation.gridx = 1;
 		gbc_btnPreparation.gridy = 7;
-		add(btnPreparation, gbc_btnPreparation);
+		add( this.btnPreparation, gbc_btnPreparation);
 
-		JButton btnIngredients = new JButton("Ingredients");
+		this.btnIngredients = new JButton("Ingredients");
 		GridBagConstraints gbc_btnIngredients = new GridBagConstraints();
 		gbc_btnIngredients.insets = new Insets(0, 0, 0, 5);
 		gbc_btnIngredients.gridx = 2;
 		gbc_btnIngredients.gridy = 7;
-		add(btnIngredients, gbc_btnIngredients);
+		add( this.btnIngredients, gbc_btnIngredients);
 
 		this.onChangeOfComboBoxActionListener( comboBox );
-		
-		this.onClickOfButtonOpenPreparationViewActionListener( btnPreparation );
-		this.onClickOfButtonOpenIngredientViewActionListener( btnIngredients );
 	}
 
 	void onChangeOfComboBoxActionListener( JComboBox box ) {

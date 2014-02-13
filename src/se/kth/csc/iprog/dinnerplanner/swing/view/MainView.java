@@ -21,18 +21,23 @@ public class MainView extends JPanel implements Observer {
 	
 	private DinnerModel modelInstance;
 	
+	public MainContentView contentView;
+	public MainSidebarView sidebarView;
+	
 	public MainView(DinnerModel modelInstance) {
 		
 		this.modelInstance = modelInstance;
 		this.modelInstance.addObserver(this);
 		
-		MainContentView contentView = new MainContentView( modelInstance, this );
-		contentView.setPreferredSize(new Dimension(600, 16));
-		MainSidebarView sidebarView = new MainSidebarView( modelInstance, this );
+		this.contentView = new MainContentView( modelInstance, this );
+		this.contentView.setPreferredSize(new Dimension(600, 16));
+		
+		this.sidebarView = new MainSidebarView( modelInstance, this );
+		
 		setLayout(new BorderLayout(0, 0));
 				
-		this.add( contentView, BorderLayout.WEST);
-		this.add( sidebarView, BorderLayout.EAST);
+		this.add( this.contentView, BorderLayout.WEST);
+		this.add( this.sidebarView, BorderLayout.EAST);
 	}
 	
 	void openView( JPanel newView, String title ) {

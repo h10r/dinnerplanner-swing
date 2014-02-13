@@ -42,7 +42,6 @@ public class DinnerPlanner extends JFrame {
 		
 		//Creating the first view
 		MainView mainView = new MainView( modelInstance );
-		//DishView dishView = new DishView(modelInstance);
 		
 		// Controllers
 		MainViewController mainViewController = new MainViewController( modelInstance, mainView );
