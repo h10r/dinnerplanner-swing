@@ -2,6 +2,7 @@ package se.kth.csc.iprog.dinnerplanner.swing.view;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ScrollPaneConstants;
@@ -165,11 +166,11 @@ public class MainContentView extends JPanel implements Observer {
 	void addMouseListenerForDish(JLabel lbl) {
 		lbl.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
-				/*
-				this.parent.openView(new DishView(modelInstance,
-						((JLabel) evt.getSource()).getText()),
-						"Diner Planer - Dish");
-				*/
+				JFrame frame = new JFrame ( "Diner Planer - Dish" );
+				frame.getContentPane().add ( new DishView(modelInstance, ((JLabel) evt.getSource()).getText()) );
+				frame.setSize(800, 600);
+				frame.pack();
+				frame.setVisible(true);
 			}
 		});
 	}
